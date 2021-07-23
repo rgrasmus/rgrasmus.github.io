@@ -33,6 +33,12 @@ var Upg_SI_OP = 0;
 var Upg_OP_SD = 0;
 var UpgMicFatPresent = 0;
 
+var ccLS5 = "5<br>Very Likely clear cell renal cell carcinoma";
+var ccLS4 = "4<br>Likely clear cell renal cell carcinoma";
+var ccLS3 = "3<br>Intermediate likelihood clear cell renal cell carcinoma";
+var ccLS2 = "2<br>Unlikely clear cell renal cell carcinoma";
+var ccLS1 = "1<br>Very Unikely clear cell renal cell carcinoma";
+
 function ReferenceFn() {
 	var Refs = document.getElementById("ccLS_Refs");
 	if (Refs.classList.contains("h-hide")) {
@@ -234,7 +240,7 @@ function Switch_CM_Enh(NewVal) {
 					SEI_Div.scrollIntoView();
 					break;
 				case 3:
-					ccLS_Text.innerHTML="3";
+					ccLS_Text.innerHTML=ccLS3;
 					ccLS_Div.style.display = "block";
 					ccLS_Div.scrollIntoView();
 					break;
@@ -244,7 +250,7 @@ function Switch_CM_Enh(NewVal) {
 			SelectBtn(MildCMBtn);
 			switch(T2Int) {
 				case 1:
-					ccLS_Text.innerHTML="3";
+					ccLS_Text.innerHTML=ccLS3;
 					ccLS_Div.style.display = "block";
 					ccLS_Div.scrollIntoView();
 					break;	
@@ -398,7 +404,7 @@ function Switch_MicFat(NewVal) {
 	switch(NewVal) {
 		case 1:
 			SelectBtn(Btn_Y_MicFat);
-			ccLS_Text.innerHTML="5";
+			ccLS_Text.innerHTML=ccLS5;
 			ccLS_Div.style.display = "block";
 			ccLS_Div.scrollIntoView();
 			break;
@@ -499,7 +505,7 @@ function SEI_Fn(NewVal) {
 			SelectBtn(Y_SEI_Btn);
 				switch(CMEnh) {
 					case 1:
-						ccLS_Text.innerHTML="3";
+						ccLS_Text.innerHTML=ccLS3;
 						ccLS_Div.style.display = "block";
 						ccLS_Div.scrollIntoView();
 						break;
@@ -513,10 +519,10 @@ function SEI_Fn(NewVal) {
 			SelectBtn(N_SEI_Btn);
 				switch(CMEnh) {
 					case 1:
-						ccLS_Text.innerHTML="4";
+						ccLS_Text.innerHTML=ccLS4;
 						break;
 					case 2:
-						ccLS_Text.innerHTML="3";
+						ccLS_Text.innerHTML=ccLS3;
 						break;
 				}
 				ccLS_Div.style.display = "block";
@@ -572,7 +578,7 @@ function Switch_UpgMicFat(NewVal) {
 	switch(NewVal) {
 		case 1:
 			SelectBtn(Btn_Y_UpgMicFat);
-			ccLS_Text.innerHTML="3";
+			ccLS_Text.innerHTML=ccLS3;
 			ccLS_Div.style.display = "block";
 			ccLS_Div.scrollIntoView();
 			break;
@@ -581,28 +587,28 @@ function Switch_UpgMicFat(NewVal) {
 			switch(T2Int) {
 				case 1:
 					if (SEI == 1) {
-						ccLS_Text.innerHTML="2";
+						ccLS_Text.innerHTML=ccLS2;
 					} else {
-						ccLS_Text.innerHTML="3";
+						ccLS_Text.innerHTML=ccLS3;
 					}
 					break;
 				case 2:
 					if (CMEnh == 2) {
 						if (SEI == 1) {
-							ccLS_Text.innerHTML="2";
+							ccLS_Text.innerHTML=ccLS2;
 						} else {
-							ccLS_Text.innerHTML="3";
+							ccLS_Text.innerHTML=ccLS3;
 						}
 					} else {
 						if (DWI == 1) {
-							ccLS_Text.innerHTML="1";
+							ccLS_Text.innerHTML=ccLS1;
 						} else {
-							ccLS_Text.innerHTML="2";
+							ccLS_Text.innerHTML=ccLS2;
 						}
 					}
 					break;
 				case 3:
-					ccLS_Text.innerHTML="1";
+					ccLS_Text.innerHTML=ccLS1;
 					break;
 			}
 			ccLS_Div.style.display = "block";
@@ -807,9 +813,9 @@ function DWI_Fn(NewVal) {
 					UpgrMicFatDiv.scrollIntoView();
 				} else {
 					if (ADER_state == 1) {
-						ccLS_Text.innerHTML="2";
+						ccLS_Text.innerHTML=ccLS2;
 					} else {
-						ccLS_Text.innerHTML="3";
+						ccLS_Text.innerHTML=ccLS3;
 					}
 					ccLS_Div.style.display = "block";
 					ccLS_Div.scrollIntoView();
@@ -822,9 +828,9 @@ function DWI_Fn(NewVal) {
 					UpgrMicFatDiv.scrollIntoView();
 				} else {
 					if (ADER_state == 1) {
-						ccLS_Text.innerHTML="3";
+						ccLS_Text.innerHTML=ccLS3;
 					} else {
-						ccLS_Text.innerHTML="4";
+						ccLS_Text.innerHTML=ccLS4;
 					}
 					ccLS_Div.style.display = "block";
 					ccLS_Div.scrollIntoView();

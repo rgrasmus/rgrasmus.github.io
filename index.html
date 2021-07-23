@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ccLS Calculator</title>
+	<link rel="stylesheet" type="text/css" href="./ccLSstyle.css">
+	<script type="text/javascript" src="./ccLS.js"></script>
+</head>
+
+<body>
+	<header class="main_head"> 
+		<h1>
+			ccLS Calculator
+		</h1>
+		
+		<h3>To see a visual flowchart of the algorithm go <a href="https://www.utsouthwestern.edu/labs/pedrosa/assets/pedrosa-0720-renal1.jpg">here</a></h3>
+	</header>
+<div id="body">	
+<button class="button" onClick="ReferenceFn()"><b>References</b></button>
+<div id="ccLS_Refs" class="h-hide">
+	<ol>	
+		<li>Kay FU, Pedrosa I. Imaging of Solid Renal Masses. <i>Radiol Clin North Am.</i> 2017;55(2):243-58. doi: <a href="https://www.radiologic.theclinics.com/article/S0033-8389(16)30146-4/fulltext">10.1016/j.rcl.2016.10.003</a></li>
+		<li>Canvasser NE, Kay FU, Xi Y, Pinho DF, Costa D, Diaz de Leon A, Khatri G, Leyendecker JR, Yokoo T, Lay A, Kavoussi N, Koseoglu E, Cadeddu JA, Pedrosa I. Diagnostic Accuracy of Multiparametric Magnetic Resonance Imaging to Identify Clear Cell Renal Cell Carcinoma in cT1a Renal Masses. <i>J Urol.</i> 2017;198(4):780-6. doi: <a href="https://doi.org/10.1016/j.juro.2017.04.089">10.1016/j.juro.2017.04.089</a></li>
+		<li>Diaz de Leon A, Davenport MS, Silverman SG, Schieda N, Cadeddu JA, Pedrosa I. Role of Virtual Biopsy in the Management of Renal Masses. <i>AJR Am J Roentgenol.</i> 2019:1-10. doi: <a href="https://doi.org/10.2214/AJR.19.21172">10.2214/AJR.19.21172</a></li>
+	</ol>
+</div>
+	
+<h2>Is there macroscopic fat?</h2>
+<button class="button" id="Btn_YesMFat" onClick="MacFat(1)">Yes</button>
+<button class="button" id="Btn_NoMFat" onClick="MacFat(2)">No</button>
+
+<div id="SolidCystic" style="display:none">
+	<h2>Is it a solid mass? (&gt;25% enhancing component)</h2>
+	<button class="button" id="Btn_YesSolid" onclick="Solid(1)">Yes</button>
+	<button class="button" id="Btn_NotSolid" onclick="Solid(2)">No</button>
+</div>
+
+<div id="NoccLS" style="display:none">
+	<h2>You should not use ccLS for this mass</h2>
+</div>
+	
+<div id="cAML" style="display:none">
+	<h2>It is likely a classic angiomyolipoma (AML)</h2>
+	<h3>References:</h3>
+	<ol>	
+		<li>Israel GM, Hindman N, Hecht E, Krinsky G. The Use of Opposed-Phase Chemical Shift MRI in the Diagnosis of Renal Angiomyolipomas. <i>JR Am J Roentgenol.</i> 2005;184: 1868-1872. doi: <a href="https://doi.org/10.2214/ajr.184.6.01841868">10.2214/ajr.184.6.01841868</a></li>
+		<li>Jinzaki M, Silverman SG, Akita H, Mikami S, Mototsuga O. Diagnosis of Renal Angiomyolipomas: Classic, Fat-Poor, and Epithelioid Types. <i>Semin Ultrasound CT MR.</i> 2017;198(4):780-6. doi: <a href="https://doi.org/10.1053/j.sult.2016.11.001">10.1053/j.sult.2016.11.001</a></li>
+	</ol>
+</div>
+
+<div id="Bosniak" style="display:none">
+	<h2>Use the <a href="https://bosniak-calculator.herokuapp.com/">Bosniak classification</a> for cystic masses</h2>
+</div>
+
+<div id="T2SI" style="display:none">
+	<h2>Mass T2 Signal Intensity Relative to Renal Cortex</h2>
+	<h3>Assess T2 signal <em>ONLY</em> in enhancing component of tumor</h3>
+	<button class="button" id="Btn_HyperT2" onclick="T2IntFn(1)">Hyperintense</button>
+	<button class="button" id="Btn_IsoT2" onclick="T2IntFn(2)">Isointense</button>
+	<button class="button" id="Btn_HypoT2" onclick="T2IntFn(3)">Hypointense</button>
+
+</div>
+
+<div id="CMEnhance" style="display:none">
+	<h2>Enhancement on Corticomedullary (CM) Phase</h2>
+	<h3>Assess area with the <em>HIGHEST</em> enhancement on CM phase</h3>
+	<button id="Btn_IntCM" class="button" onclick="CM_EnhFn(1)">Intense</button>
+	<button id="Btn_ModCM" class="button" onclick="CM_EnhFn(2)">Moderate</button>
+	<button id="Btn_MildCM" class="button" onclick="CM_EnhFn(3)">Mild</button>
+	<button id="Btn_HelpCM" class="button" onclick="CM_EnhFn(4)">Help Me Calculate</button>
+	<div id="CalcEnhance" class="calculator" style="display:none">
+		<h3>Signal Intensity Tumor</h3>
+		<div id = "SI_T_Pre" style="margin-bottom: 6px" class="input">
+			<label>Precontrast Phase</label> <input type="number" id="SI_Tumor_Pre">
+		</div>
+		<div id = "SI_T_CM" style="margin-bottom: 6px" class="input">
+			<label>CM Phase</label> <input type="number" id="SI_Tumor_CM">
+		</div>
+		<h3> Signal Intensity Cortex</h3>
+		<div id = "SI_C_Pre" style="margin-bottom: 6px" class="input">
+			<label>Precontrast Phase</label> <input type="number" id="SI_Cortex_Pre">
+		</div>
+		<div id = "SI_C_CM" style="margin-bottom: 6px" class="input">
+			<label>CM Phase</label> <input type="number" id="SI_Cortex_CM">
+		</div>
+
+		<button id="Btn_CalcEnh" class="button" onclick="CM_RunCalc()">Calculate</button>
+		<button id="Btn_CalcEnh_Reset" class="button" onclick="CM_CalcEnh_Reset()">Reset</button>
+		<div id="Calc_CMEnh" style="display:none">
+			<h3>Tumor enhancement:  <span id="CM_Tumor">NA</span>%</h3>
+			<h3>Cortex enhancement: <span id="CM_Cortex">NA</span>%</h3>
+			<h3>Tumor-Cortex Ratio: <span id="TC_Ratio">NA</span>%</h3>
+		</div>
+	</div>
+</div>
+
+<div id="MicroFat" style="display:none">
+	<h2>Is Microscopic Fat Present?</h2>
+	<button id="Btn_Y_MicFat" class="button" onclick="MicFat(1)">Yes</button>
+	<button id="Btn_N_MicFat" class="button" onclick="MicFat(2)">No</button>
+	<button id="Btn_HelpMicFat" class="button" onclick="MicFat(3)">Help Me Calculate</button>
+	<div id="CalcMicFat" class="calculator" style="display:none">
+		<h3>In-Phase Imaging</h3>
+		<div id = "SI_InPhase" style="margin-bottom: 6px" class="input">
+			<label>Signal Intensity</label> <input type="number" id="SI_IP">
+		</div>
+		<div id="SD_InPhase" style="margin-bottom: 6px" class="input">
+			<label>Standard Deviation</label> <input type="number" id="IP_SD">
+		</div>
+		<h3>Opposed-Phase Imaging</h3>
+		<div id = "SI_OutPhase" style="margin-bottom: 6px" class="input">
+			<label>Signal Intensity</label> <input type="number" id="SI_OP">
+		</div>
+		<div id="SD_OutPhase" style="margin-bottom: 6px" class="input">
+			<label>Standard Deviation</label> <input type="number" id="OP_SD">
+		</div>
+		<button id="Btn_CalcMicFat" class="button" onclick="MicFat_RunCalc()">Calculate</button>
+		<button id="Btn_CalcMicFat_Reset" class="button" onclick="CalcMicFat_Reset()">Reset</button>
+	</div>
+</div>	
+	
+<div id="SEI" style="display:none">
+	<h2>Is Segmental Enhancement Inversion (SEI) Present?</h2>
+	<button id="Y_SEI_Btn" class="button" onclick="SEI_Fn(1)">Yes</button>
+	<button id="N_SEI_Btn" class="button" onclick="SEI_Fn(2)">No</button>
+</div>
+
+<div id="ADER" style="display:none">
+	<h2>Arterial-Delayed Enhancement Ratio (ADER)</h2>
+	<button id="Btn_ADER_GT" class="button" onclick="ADERFn(1)">ADER &gt; 1.5</button>
+	<button id="Btn_ADER_LT" class="button" onclick="ADERFn(2)">ADER &lt; 1.5</button>
+	<button id="Btn_Help_ADER" class="button" onclick="ADERFn(3)">Help Me Calculate</button>
+	<div id="CalcADER" class="calculator" style="display:none">
+		<h3>Signal Intensity</h3>
+		<div id = "Pre_SI_ADER" style="margin-bottom: 6px" class="input">
+			<label>Pre-Contrast</label> <input type="number" id="ADER_Pre_SI">
+		</div>
+		<div id="CM_SI_ADER" style="margin-bottom: 6px" class="input">
+			<label>Corticomedullary</label> <input type="number" id="ADER_CM_SI">
+		</div>
+		<div id="NG_SI_ADER" style="margin-bottom: 6px" class="input">
+			<label>Nephrographic</label> <input type="number" id="ADER_NG_SI">
+		</div>
+		<button id="Btn_CalcADER" class="button" onclick="ADER_RunCalc()">Calculate</button>
+		<button id="Btn_CalcADER_Reset" class="button" onclick="CalcADER_Reset()">Reset</button>
+		<div id="Calc_ADER" style="display:none">
+			<h3>The calculated ADER is: <span id="ADER_Num">0</span></h3>
+		</div>
+	</div>
+
+</div>
+
+<div id="DWI" style="display:none">
+	<h2>Is the tumor homogeneous or marked restriction on DWI?</h2>
+	<button id="Y_DWI_Btn" class="button" onclick="DWI_Fn(1)">Yes</button>
+	<button id="N_DWI_Btn" class="button" onclick="DWI_Fn(2)">No</button>
+</div>
+	
+<div id="UpgradeMicroFat" style="display:none">
+	<h2>Is Unequivical Microscopic Fat Present?</h2>
+	<button id="Btn_Y_UpgMicFat" class="button" onclick="UpgMicFat(1)">Yes</button>
+	<button id="Btn_N_UpgMicFat" class="button" onclick="UpgMicFat(2)">No</button>
+	<button id="Btn_HelpUpgMicFat" class="button" onclick="UpgMicFat(3)">Help Me Calculate</button>
+	<div id="CalcUpgMicFat" class="calculator" style="display:none">
+		<h3>In-Phase Imaging</h3>
+		<div id = "UgrSI_InPhase" style="margin-bottom: 6px" class="input">
+			<label>Signal Intensity</label> <input type="number" id="Upg_SI_IP">
+		</div>
+		<div id="UgrSD_InPhase" style="margin-bottom: 6px" class="input">
+			<label>Standard Deviation</label> <input type="number" id="Upg_IP_SD">
+		</div>
+		<h3>Opposed-Phase Imaging</h3>
+		<div id = "UpgSI_OutPhase" style="margin-bottom: 6px" class="input">
+			<label>Signal Intensity</label> <input type="number" id="Upg_SI_OP">
+		</div>
+		<div id="UpgSD_OutPhase" style="margin-bottom: 6px" class="input">
+			<label>Standard Deviation</label> <input type="number" id="Upg_OP_SD">
+		</div>
+		<button id="Btn_UpgCalcMicFat" class="button" onclick="UpgMicFat_RunCalc()">Calculate</button>
+		<button id="Btn_UpgCalcMicFat_Reset" class="button" onclick="UpgCalcMicFat_Reset()">Reset</button>
+	</div>
+</div>	
+	
+<div id="Final_ccLS" style="display:none">
+	<h2>The calculated ccLS is: <span id="ccLS_Num">0</span></h2>
+</div>
+</div>
+	
+<footer>
+	<img src="https://www.utsouthwestern.edu/img/branding/ut-southwestern-alt.png" alt="UTSW Logo">
+	<div>Designed by Rob Rasmussen, MD, PhD</div>
+</footer>
+	
+</body>
+
+</html>

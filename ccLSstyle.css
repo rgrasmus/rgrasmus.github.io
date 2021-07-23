@@ -90,10 +90,12 @@ footer div {
 	transition-duration: 0.4s;
  }
  
- .button:hover {
-	 background-color: darkgray !important;
-	 cursor: pointer;
- }
+ @media (hover: hover) {
+	 .button:hover {
+		 background-color: darkgray !important;
+		 cursor: pointer;
+	 }
+}
 
 .button:disabled,
 .button[disabled]{

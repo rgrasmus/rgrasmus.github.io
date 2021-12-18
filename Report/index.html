@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ccLS Calculator</title>
 	<link rel="stylesheet" type="text/css" href="./ccLSstyle.css">
-	<script type="text/javascript" src="./ccLS.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -63,7 +63,7 @@
 </div>
 	
 <div id="T2SI" >
-	<h2>T2 Signal Intensity</h2>
+	<h2>T2 Signal Intensity &nbsp;<i class="fa fa-info-circle help_icon openmodal" href="#T2SI_modal"></i></h2>
 	<p>Assess T2 signal <em>ONLY</em> in enhancing component of tumor </p> 
 	<h3>Intensity Relative to Background Renal Cortex</h3>
 	<input type="radio" name="T2_Int" id="T2_Hyper" value="Hyperintense"><label class="R_Lbl" for="T2_Hyper">Hyperintense</label>
@@ -77,8 +77,25 @@
 
 </div>
 
+<div id="T2SI_modal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>T2 Signal Intensity</h2>
+    </div>
+    <div class="modal-body">
+		<p>T2 Signal Intensity should be evaluated on single-shot fast spin-echo (ie, without fat saturation) based on the predominant signal in the enhancing component of the mass &ge;2 minutes after contrast administration</p>
+		<img src="T2_SI.jpeg" alt="HTML5 Icon" width="75%" class="center">
+		<p><b>(A, B)</b> The mass has heterogeneous but diffuse enhancement. Thus, the mass is classified by its predominant hyerintense T2 signal (Hyper). <br><b>(C, D)</b> The mass enhances diffusely. There is central scar that enhances more intensely (arrow in <b>D</b>) with corresponding T2 hyperintense area (* in <b>C</b>). However, the predominant signal at T2-weighted imaging is isointense (Iso) to the renal cortex. <br><b>(E, F)</b> A small central T2 hyperintense area (* in <b>E</b>) does not enhance. However, the predominant T2 signal in the rest of the enhancing areas is isointense to the renal cortex. <br><b>(G, H)</b> The mass has diffuse homogeneous enhancement. Thus, T2 signal should be assessed across the entire mass and categorized as hypointense (Hypo). <br><b>(I, J)</b> A large T2 hyperintense area of cystic degeneration with hemorrhagic fluid (ie, precontrast T1 hyperintensity; not shown) is present inferiorly (* in <b>I</b>). This area does not enhance (<b>J</b>, T1-weighted postcontrast minus precontrast) and thus should be ignored. The predominant T2 signal in the enhancing component of the mass (yellow outline in <b>J</b>) is hypointense.</p>
+    </div>
+  </div>
+
+</div>
+	
 <div id="CMEnhance">
-	<h2>Enhancement Characteristics at Corticomedullary (CM) Phase</h2>
+	<h2>Enhancement Characteristics at Corticomedullary (CM) Phase &nbsp;<i class="fa fa-info-circle help_icon openmodal" href="#CME_modal"></i></h2>
 	<p>Assess area with the <em>HIGHEST</em> enhancement on CM phase </p>
 	<h3>Degree of Enhancement Relative to Background Renal Cortex</h3>
 	<input type="radio" name="CME" id="CME_Int" value="Intense"><label class="R_Lbl" for="CME_Int">Intense (&gt; 75%)</label>
@@ -116,7 +133,26 @@
 	<input type="radio" name="CM_Ptr" id="CM_SlHet" value="Slightly Heterogeneous"><label class="R_Lbl" for="CM_SlHet">Slightly Heterogeneous</label>
 	<input type="radio" name="CM_Ptr" id="CM_Het" value="Heterogeneous"><label class="R_Lbl" for="CM_Het">Heterogeneous</label>
 </div>
+	
+<div id="CME_modal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+	
 <div id="T1CS">
 	<h2>T1 Chemical Shift</h2>
 	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat"><label class="R_Lbl" for="T1_Macro" onClick="MacroFat()">Macroscopic Fat</label>
@@ -281,6 +317,8 @@
 	<img src="https://www.utsouthwestern.edu/img/branding/ut-southwestern-alt.png" width="150" alt="UTSW Logo">
 	<div>Site design by<br>Rob Rasmussen, MD, PhD</div>
 </footer>
+	
+	<script type="text/javascript" src="./ccLS.js"></script>
 	
 </body>
 

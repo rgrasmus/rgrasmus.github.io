@@ -6,6 +6,45 @@ var ccLS2_fpAML = "most consistent with fat-poor angiomyolipoma (ccLS 2); howeve
 var ccLS2 = "most consistent with renal cell carcinoma; clear cell subtype unlikely (ccLS 2)";
 var ccLS1 = "most consistent with renal cell carcinoma; papillary subtype very likely (ccLS 1). Rarely, other tumors, such as fat-poor angiomyolipoma, can have these findings";
 
+
+// Get the button that opens the modal
+var icn = document.querySelectorAll(".openmodal");
+console.log(icn.length);
+
+// All page modals
+var modals = document.querySelectorAll('.modal');
+
+// Get the <span> element that closes the modal
+var spans = document.getElementsByClassName("close");
+
+// When the user clicks the button, open the modal
+for (var i = 0; i < icn.length; i++) {
+ icn[i].onclick = function(e) {
+    e.preventDefault();
+	console.log("hi");
+    modal = document.querySelector(e.target.getAttribute("href"));
+    modal.style.display = "block";
+ }
+}
+
+// When the user clicks on <span> (x), close the modal
+for (var i = 0; i < spans.length; i++) {
+ spans[i].onclick = function() {
+    for (var index in modals) {
+      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+    }
+ }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+     for (var index in modals) {
+      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+     }
+    }
+}
+
 function CheckPrior(NewVal) {
 	var PriorDiv = document.getElementById("Prior_Info");
 	var PriorDate = document.getElementById("Prior_Date");

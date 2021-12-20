@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ccLS Calculator</title>
 	<link rel="stylesheet" type="text/css" href="./ccLSstyle.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
 </head>
 
 <body>
@@ -14,9 +14,15 @@
 			Solid Renal Mass MRI Report Generator
 		</h1>
 		
-		<h3>To see a visual flowchart of the ccLS algorithm go <a href="https://www.utsouthwestern.edu/labs/pedrosa/assets/pedrosa-0720-renal1.jpg">here</a></h3>
+		<h3>
+			A standardized reporting template that applies the clear cell likelihood score (ccLS) algorithm. <br>
+			To see a visual flowchart of the ccLS algorithm go <a href="https://www.utsouthwestern.edu/labs/pedrosa/assets/pedrosa-0720-renal1.jpg">here</a>
+		</h3>
 		This algorithm is designed for solid (&gt;25% enhancing component) renal masses without macroscopic (bulk) fat. <br>
 		Please use the <a href="https://bosniak-calculator.herokuapp.com/">Bosniak classification</a> for cystic (non-solid) masses.
+		<div>
+			<i id="Dark_Toggle" class="fas fa-moon dark_toggle" onClick="Toggle_Dark()"></i>
+		</div>
 	</header>
 <div id="body">	
 
@@ -63,7 +69,7 @@
 </div>
 	
 <div id="T2SI" >
-	<h2>T2 Signal Intensity &nbsp;<i class="fa fa-info-circle help_icon openmodal" href="#T2SI_modal"></i></h2>
+	<h2>T2 Signal Intensity &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#T2SI_modal"></i></h2>
 	<p>Assess T2 signal <em>ONLY</em> in enhancing component of tumor </p> 
 	<h3>Intensity Relative to Background Renal Cortex</h3>
 	<input type="radio" name="T2_Int" id="T2_Hyper" value="Hyperintense"><label class="R_Lbl" for="T2_Hyper">Hyperintense</label>
@@ -79,23 +85,27 @@
 
 <div id="T2SI_modal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">×</span>
-      <h2>T2 Signal Intensity</h2>
-    </div>
-    <div class="modal-body">
-		<p>T2 Signal Intensity should be evaluated on single-shot fast spin-echo (ie, without fat saturation) based on the predominant signal in the enhancing component of the mass &ge;2 minutes after contrast administration</p>
-		<img src="T2_SI.jpeg" alt="HTML5 Icon" width="75%" class="center">
-		<p><b>(A, B)</b> The mass has heterogeneous but diffuse enhancement. Thus, the mass is classified by its predominant hyerintense T2 signal (Hyper). <br><b>(C, D)</b> The mass enhances diffusely. There is central scar that enhances more intensely (arrow in <b>D</b>) with corresponding T2 hyperintense area (* in <b>C</b>). However, the predominant signal at T2-weighted imaging is isointense (Iso) to the renal cortex. <br><b>(E, F)</b> A small central T2 hyperintense area (* in <b>E</b>) does not enhance. However, the predominant T2 signal in the rest of the enhancing areas is isointense to the renal cortex. <br><b>(G, H)</b> The mass has diffuse homogeneous enhancement. Thus, T2 signal should be assessed across the entire mass and categorized as hypointense (Hypo). <br><b>(I, J)</b> A large T2 hyperintense area of cystic degeneration with hemorrhagic fluid (ie, precontrast T1 hyperintensity; not shown) is present inferiorly (* in <b>I</b>). This area does not enhance (<b>J</b>, T1-weighted postcontrast minus precontrast) and thus should be ignored. The predominant T2 signal in the enhancing component of the mass (yellow outline in <b>J</b>) is hypointense.</p>
-    </div>
-  </div>
-
+	<!-- Modal content -->
+	<div class="modal-content">
+		<div class="modal-header">
+			<span class="close">×</span>
+			<h2>T2 Signal Intensity</h2>
+		</div>
+		<div class="modal-body">
+		<div>
+			<p>T2 Signal Intensity should be evaluated on single-shot fast spin-echo (ie, without fat saturation) based on the predominant signal in the enhancing component of the mass &ge;2 minutes after contrast administration</p>
+			<img src="T2_SI.jpeg" alt="HTML5 Icon" width="75%" class="center">
+			<p><b>(A, B)</b> The mass has heterogeneous but diffuse enhancement. Thus, the mass is classified by its predominant hyerintense T2 signal (Hyper). <br><b>(C, D)</b> The mass enhances diffusely. There is central scar that enhances more intensely (arrow in <b>D</b>) with corresponding T2 hyperintense area (* in <b>C</b>). However, the predominant signal at T2-weighted imaging is isointense (Iso) to the renal cortex. <br><b>(E, F)</b> A small central T2 hyperintense area (* in <b>E</b>) does not enhance. However, the predominant T2 signal in the rest of the enhancing areas is isointense to the renal cortex. <br><b>(G, H)</b> The mass has diffuse homogeneous enhancement. Thus, T2 signal should be assessed across the entire mass and categorized as hypointense (Hypo). <br><b>(I, J)</b> A large T2 hyperintense area of cystic degeneration with hemorrhagic fluid (ie, precontrast T1 hyperintensity; not shown) is present inferiorly (* in <b>I</b>). This area does not enhance (<b>J</b>, T1-weighted postcontrast minus precontrast) and thus should be ignored. The predominant T2 signal in the enhancing component of the mass (yellow outline in <b>J</b>) is hypointense.</p>
+		</div>
+		</div>
+	<div class="modal-footer">
+		<p></p>
+	</div>
+	</div>
 </div>
 	
 <div id="CMEnhance">
-	<h2>Enhancement Characteristics at Corticomedullary (CM) Phase &nbsp;<i class="fa fa-info-circle help_icon openmodal" href="#CME_modal"></i></h2>
+	<h2>Enhancement Characteristics at Corticomedullary (CM) Phase &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#CME_modal"></i></h2>
 	<p>Assess area with the <em>HIGHEST</em> enhancement on CM phase </p>
 	<h3>Degree of Enhancement Relative to Background Renal Cortex</h3>
 	<input type="radio" name="CME" id="CME_Int" value="Intense"><label class="R_Lbl" for="CME_Int">Intense (&gt; 75%)</label>
@@ -136,28 +146,28 @@
 	
 <div id="CME_modal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">×</span>
-      <h2>Modal Header</h2>
-    </div>
-    <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-
+	<!-- Modal content -->
+	<div class="modal-content">
+		<div class="modal-header">
+			<span class="close">×</span>
+			<h2>Corticomedullary Phase Enhancement</h2>
+		</div>
+		<div class="modal-body">
+			<p>Analysis of enhancement on CM phase should be performed with an ROI (yellow circles) in the area of the renal mass that has the most subjective enhancement, avoiding areas with decreased enhancement, necrosis, hemorrhage, cystic degeneration, or portions of internal tumor vasculature. </p>
+			<img src="CMEnh.jpeg" alt="HTML5 Icon" width="65%" class="center">
+			<p><b>(A)</b> In a mass with heterogeneous enhancement, select the focal region with intense enhancement. <b>(B)</b> In a mass with diffuse intense enhancement, select the homogeneous region avoiding patchy hypointense foci. <b>(C)</b> In a mass with background moderate enhancement, select the focus of intense enhancement. <b>(D)</b> Avoid placing the ROI on a region of central non-enhacement (*). <b>(E)</b> A large ROI is appropriate for this mass with homogeneous intense enhancement. <b>(F)</b> Although the ROI is appropriately placed on the small focus of increased enhancement while avoiding an area of central non-enhancement (*), the enhancement was still moderate by ccLS criteria <b>(G)</b> A large ROI is appropriate for this mass with homogeneous, nearly imperceptably mild enhancement <b>(H)</b> Subtraction (CM phase - Precontrast) image helps visualize a region of mild enhancement, avoiding an area of cystic degeneration with hemorrhagic fluid (*) which was hyperintense on Precontrast T1 image (not shown).</p>
+		</div>
+		<div class="modal-footer">
+			<p></p>
+		</div>
+	</div>
 </div>
 	
 <div id="T1CS">
 	<h2>T1 Chemical Shift</h2>
-	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat"><label class="R_Lbl" for="T1_Macro" onClick="MacroFat()">Macroscopic Fat</label>
-	<input type="radio" name="T1fat" id="T1_Micro" value="Microscopic Fat"><label class="R_Lbl" for="T1_Micro">Microscopic Fat</label>
-	<input type="radio" name="T1fat" id="T1_NoFat" value="No Fat"><label class="R_Lbl" for="T1_NoFat">No Fat</label>
+	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat"><label class="R_Lbl" for="T1_Macro" onClick="T1CS('Macro')">Macroscopic Fat</label>
+	<input type="radio" name="T1fat" id="T1_Micro" value="Microscopic Fat"><label class="R_Lbl" for="T1_Micro" onclick="T1CS('Micro')">Microscopic Fat</label>
+	<input type="radio" name="T1fat" id="T1_NoFat" value="No Fat"><label class="R_Lbl" for="T1_NoFat" onclick="T1CS('NoFat')">No Fat</label>
 	<button id="Btn_T1_OpenCalc" class="button" onclick="T1_OpenCalc()">Help Me Calculate</button>
 	<div id="CalcT1" class="calculator" style="display: none">
 		<h4>In-Phase Imaging</h4>
@@ -176,6 +186,15 @@
 		</div>
 		<button id="Btn_CalcMicFat" class="button" onclick="T1_RunCalc()">Calculate</button>
 		<button id="Btn_CalcMicFat_Reset" class="button" onclick="T1_ResetCalc()">Reset</button>
+		<div id="T1_Result">
+			<h4>The calculated 2 standard deviation difference is <span id="T1_Dif">NaN</span><br>
+			Microscopic fat is present if the difference is positive.</h4>
+		</div>
+	</div>
+	<div id="UnequivMicFat" style="display: none">
+		<h3>Is Microscopic Fat Unequivocally Present?</h3>
+		<input type="radio" name="Unequivocal" id="Unequiv_Yes" value="Yes"><label class="R_Lbl" for="Unequiv_Yes">Yes</label>
+		<input type="radio" name="Unequivocal" id="Unequiv_No" value="No"><label class="R_Lbl" for="Unequiv_No">No</label>
 	</div>
 </div>	
 
@@ -191,18 +210,34 @@
 	<input type="radio" name="ADC" id="ADC_Hyper" value="Hyperintense"><label class="R_Lbl" for="ADC_Hyper">Hyperintense</label>
 	<input type="radio" name="ADC" id="ADC_Iso" value="Isointense"><label class="R_Lbl" for="ADC_Iso">Isointense</label>
 	<input type="radio" name="ADC" id="ADC_Hypo" value="Hypointense"><label class="R_Lbl" for="ADC_Hypo">Hypointense</label>
-	
-	<h3>Pattern of DWI Signal</h3>
-	<input type="radio" name="DWI_Ptr" id="DWI_Homo" value="Homogeneous"><label class="R_Lbl" for="DWI_Homo">Homogeneous</label>
-	<input type="radio" name="DWI_Ptr" id="DWI_Het" value="Heterogeneous"><label class="R_Lbl" for="DWI_Het">Heterogeneous</label>
 </div>	
 
 <div id="SEI">
-	<h2>Is Segmental Enhancement Inversion (SEI) Present?</h2>
+	<h2>Is Segmental Enhancement Inversion (SEI) Present? &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#SEI_modal"></i></h2>
 	<input type="radio" name="SEI" id="SEI_Y" value="Yes"><label class="R_Lbl" for="SEI_Y">Yes</label>
 	<input type="radio" name="SEI" id="SEI_N" value="No"><label class="R_Lbl" for="SEI_N">No</label>
 </div>
+	
+<div id="SEI_modal" class="modal">
 
+	<!-- Modal content -->
+	<div class="modal-content">
+		<div class="modal-header">
+			<span class="close">×</span>
+			<h2>Segmental Enhancement Inversion</h2>
+		</div>
+		<div class="modal-body">
+			<p>Presence of segmental enhancement inversion refers to a renal mass that demonstrates areas of both hyperenhancement and hypoenhancement during the corticomedullary phase that respectively become relatively hypoenhancing and hyperenhancing, during later phases after contrast administration.</p>
+			<img src="SEI.jpeg" alt="HTML5 Icon" width="75%" class="center">
+			<p><b>(A)</b> This mass is heterogeneous although predominately T2 hyperintense. <b>(B, C)</b> Post-contrast images in the <b>(B)</b> corticomedullary and <b>(C)</b> late nephrographic phase demonstrates regions of hyperintensity on CM phase that relatively washout at late nephrographic phase (arrow) as well as regions of hypoenhancement on CM phase that develop relatively intense enhancement at late nephrographic phase (arrowhead). This is segmental enhancement inversion.</p>
+		</div>
+		<div class="modal-footer">
+			<p></p>
+		</div>
+	</div>
+
+</div>
+	
 <div id="Washout">
 	<h2>Is Tumor Washout Present?</h2>
 	<p>(i.e., Arterial-Delayed Enhancement Ratio (ADER) &ge; 1.5)</p>
@@ -280,7 +315,7 @@
 		- Depth extension: <span id="Dep_Ext">___</span>.<br>
 		- T2 signal relative to renal cortex: <span id="T2_SI">___</span>; <span id="T2_Pat">___</span>.<br>
 		- T1 chemical shift: <span id="T1_Fat">___</span><br>
-		- High b-value DWI: <span id="DWI_Sig">___</span>; <span id="DWI_Pat">___</span>; ADC: <span id="ADC_Sig">___</span>.<br>
+		- High b-value DWI: <span id="DWI_Sig">___</span>; ADC: <span id="ADC_Sig">___</span>.<br>
 		- Enhancement (corticomedullary) relative to renal cortex: <span id="CMEnh">___</span>; <span id="CME_Pat">___</span>.<br>
 		- Segmental Inversion Enhancement: <span id="SEI_Prz">___</span>.<br>
 		- Clear cell RCC Likelihood Score (ccLS; 1-5): <span id="ccLS_Val">___</span>.<br>

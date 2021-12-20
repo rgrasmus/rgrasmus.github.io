@@ -5,11 +5,10 @@ var ccLS2_Onco = "indeterminate for histologic subtype, but oncocytoma suspected
 var ccLS2_fpAML = "most consistent with fat-poor angiomyolipoma (ccLS 2); however, renal cell carcinoma cannot be excluded";
 var ccLS2 = "most consistent with renal cell carcinoma; clear cell subtype unlikely (ccLS 2)";
 var ccLS1 = "most consistent with renal cell carcinoma; papillary subtype very likely (ccLS 1). Rarely, other tumors, such as fat-poor angiomyolipoma, can have these findings";
-
+var ccLS_cAML = 'are typical of classic angiomyolipoma with bulk fat';
 
 // Get the button that opens the modal
 var icn = document.querySelectorAll(".openmodal");
-console.log(icn.length);
 
 // All page modals
 var modals = document.querySelectorAll('.modal');
@@ -19,30 +18,38 @@ var spans = document.getElementsByClassName("close");
 
 // When the user clicks the button, open the modal
 for (var i = 0; i < icn.length; i++) {
- icn[i].onclick = function(e) {
-    e.preventDefault();
-	console.log("hi");
-    modal = document.querySelector(e.target.getAttribute("href"));
-    modal.style.display = "block";
- }
+	icn[i].onclick = function(e) {
+		e.preventDefault();
+		console.log("hi");
+		modal = document.querySelector(e.target.getAttribute("href"));
+		modal.style.display = "block";
+	}
 }
 
 // When the user clicks on <span> (x), close the modal
 for (var i = 0; i < spans.length; i++) {
- spans[i].onclick = function() {
-    for (var index in modals) {
-      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-    }
- }
+	spans[i].onclick = function() {
+		for (var index in modals) {
+			if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+		}
+	}
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target.classList.contains('modal')) {
-     for (var index in modals) {
-      if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-     }
-    }
+	if (event.target.classList.contains('modal')) {
+		for (var index in modals) {
+			if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+		}
+	}
+}
+
+function Toggle_Dark() {
+	var element = document.body;
+	element.classList.toggle("dark_mode");
+	var DarkTgl = document.getElementById("Dark_Toggle");
+	DarkTgl.classList.toggle("fa-moon");
+	DarkTgl.classList.toggle("fa-sun")
 }
 
 function CheckPrior(NewVal) {
@@ -63,8 +70,26 @@ function CheckPrior(NewVal) {
 	}
 }
 
-function MacroFat() {
-	alert("A renal tumor with macroscopic fat is highly likely to be a classic angiomyolipoma (AML) and the ccLS algorithm does not apply to such tumors");
+function T1CS(Resp) {
+	var Yes_R = document.getElementById('Unequiv_Yes');
+	var No_R = document.getElementById('Unequiv_No');
+	var UneqDiv = document.getElementById('UnequivMicFat');
+
+	switch (Resp) {
+		case "Macro":
+			alert("A renal tumor with macroscopic fat is highly likely to be a classic angiomyolipoma (AML) and the ccLS algorithm does not apply to such tumors");
+			Yes_R.checked = false;
+			No_R.checked = false;
+			UneqDiv.style.display = "none";
+			break;
+		case "Micro":
+			UneqDiv.style.display = "block";
+			break;
+		case "NoFat":
+			Yes_R.checked = false;
+			No_R.checked = false;
+			UneqDiv.style.display = "none";
+	}
 }
 
 function CM_OpenCalc() {
@@ -170,11 +195,14 @@ function T1_ClearVars() {
 	var Inp_IP_SD = document.getElementById("IP_SD");
 	var Inp_SI_OP = document.getElementById("SI_OP");
 	var Inp_OP_SD = document.getElementById("OP_SD");
+	var T1Dif_Text = document.getElementById("T1_Dif");
 
 	Inp_SI_IP.value = '';
 	Inp_IP_SD.value = '';
 	Inp_SI_OP.value = '';
 	Inp_OP_SD.value = '';
+
+	T1Dif_Text.innerHTML = "NaN";
 }
 
 function T1_RunCalc() {
@@ -186,11 +214,17 @@ function T1_RunCalc() {
 	var Micro = document.getElementById("T1_Micro");
 	var NoFat = document.getElementById("T1_NoFat");
 	
+	var T1Dif_Text = document.getElementById("T1_Dif");
+
 	var MicFatPresent = (SI_IP-SI_OP)-(IP_SD+OP_SD);
 	if (MicFatPresent>0) {
 		Micro.checked = true;
+		T1Dif_Text.innerHTML = "+" + MicFatPresent.toFixed(1);
+		T1CS('Micro');
 	} else {
 		NoFat.checked = true;
+		T1Dif_Text.innerHTML = MicFatPresent.toFixed(1);
+		T1CS('NoFat');
 	}
 }
 
@@ -202,6 +236,7 @@ function T1_ResetCalc() {
 	NoFat.checked = false;
 	
 	T1_ClearVars();
+	T1CS('NoFat');
 }
 
 function ADER_OpenCalc() {
@@ -301,11 +336,9 @@ function Generate_Report() {
 	
 	//Get the Diffusion Info
 	var DWI_Sig = document.querySelector('input[name=DWI]:checked')?.value;
-	var DWI_Pat = document.querySelector('input[name=DWI_Ptr]:checked')?.value;
 	var ADC_Sig = document.querySelector('input[name=ADC]:checked')?.value;
 	
 	document.getElementById('DWI_Sig').innerHTML = DWI_Sig;
-	document.getElementById('DWI_Pat').innerHTML = DWI_Pat;
 	document.getElementById('ADC_Sig').innerHTML = ADC_Sig;
 	
 	//Get the Enhancement Info
@@ -345,7 +378,13 @@ function Generate_Report() {
 	Run_ccLS();
 	
 }
- 
+function set_ccLS(val, fpAML, Onco, Imp) {
+	document.getElementById('ccLS_Val').innerHTML = val;
+	document.getElementById('Is_fpAML').innerHTML = fpAML;
+	document.getElementById('Is_Onco').innerHTML = Onco;
+	document.getElementById('ccLS_Imp').innerHTML = Imp;
+}
+
 function Run_ccLS() {
 	var T2_SI = document.querySelector('input[name=T2_Int]:checked')?.value;
 	var CMEnh = document.querySelector('input[name=CME]:checked')?.value;
@@ -353,14 +392,11 @@ function Run_ccLS() {
 	var SEI_Prz = document.querySelector('input[name=SEI]:checked')?.value;
 	var Washout = document.querySelector('input[name=Wash]:checked')?.value;
 	var DWI_Sig = document.querySelector('input[name=DWI]:checked')?.value;
-	var DWI_Pat = document.querySelector('input[name=DWI_Ptr]:checked')?.value;
 	var ADC_Sig = document.querySelector('input[name=ADC]:checked')?.value;
-	
+	var Uneq_MF = document.querySelector('input[name=Unequivocal]:checked')?.value;
+
 	if (T1_Fat == "Macroscopic Fat") {
-		document.getElementById('ccLS_Val').innerHTML = 'N/A';
-		document.getElementById('Is_fpAML').innerHTML = 'No';
-		document.getElementById('Is_Onco').innerHTML = 'No';
-		document.getElementById('ccLS_Imp').innerHTML = 'are typical of classic angiomyolipoma with bulk fat';
+		set_ccLS(val='N/A', fpAML='No', Onco='No', Imp=ccLS_cAML);
 		return;
 	}
 	
@@ -374,10 +410,7 @@ function Run_ccLS() {
 					ccLS_T2HypIso_Mod();
 					break;
 				case "Mild":
-					document.getElementById('ccLS_Val').innerHTML = '3';
-					document.getElementById('Is_fpAML').innerHTML = 'No';
-					document.getElementById('Is_Onco').innerHTML = 'No';
-					document.getElementById('ccLS_Imp').innerHTML = ccLS3;
+					set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
 					break;
 				default:
 					Cannot_Calc_ccLS("Corticomedullary Enhancement");
@@ -394,23 +427,32 @@ function Run_ccLS() {
 				case "Mild":
 					switch(T1_Fat) {
 						case "Microscopic Fat":
-							document.getElementById('ccLS_Val').innerHTML = '3';
-							document.getElementById('Is_fpAML').innerHTML = 'No';
-							document.getElementById('Is_Onco').innerHTML = 'No';
-							document.getElementById('ccLS_Imp').innerHTML = ccLS3;
+							switch(Uneq_MF) {
+								case "Yes":
+									set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
+									break;
+								case "No":
+									if (DWI_Sig && ADC_Sig) {
+										if ((DWI_Sig == "Hyperintense") && (ADC_Sig == "Hypointense")) {
+											set_ccLS(val='1', fpAML='No', Onco='No', Imp=ccLS1);
+										} else {
+											set_ccLS(val='2', fpAML='No', Onco='No', Imp=ccLS2);
+										}
+									} else {
+										Cannot_Calc_ccLS("Diffusion Characteristics");
+									}
+									break;
+								default:
+									Cannot_Calc_ccLS("Unequivocal Microscopic Fat");
+							}
+							
 							break;
 						case "No Fat":
 							if (DWI_Sig && ADC_Sig) {
 								if ((DWI_Sig == "Hyperintense") && (ADC_Sig == "Hypointense")) {
-									document.getElementById('ccLS_Val').innerHTML = '1';
-									document.getElementById('Is_fpAML').innerHTML = 'No';
-									document.getElementById('Is_Onco').innerHTML = 'No';
-									document.getElementById('ccLS_Imp').innerHTML = ccLS1;
+									set_ccLS(val='1', fpAML='No', Onco='No', Imp=ccLS1);
 								} else {
-									document.getElementById('ccLS_Val').innerHTML = '2';
-									document.getElementById('Is_fpAML').innerHTML = 'No';
-									document.getElementById('Is_Onco').innerHTML = 'No';
-									document.getElementById('ccLS_Imp').innerHTML = ccLS2;
+									set_ccLS(val='2', fpAML='No', Onco='No', Imp=ccLS2);
 								}
 							} else {
 								Cannot_Calc_ccLS("Diffusion Characteristics");
@@ -429,62 +471,35 @@ function Run_ccLS() {
 				case "Intense":
 					switch (Washout) {
 						case "Yes":
-							if (DWI_Sig && ADC_Sig && DWI_Pat) {
-								if (((DWI_Sig == "Hyperintense") && (ADC_Sig == "Hypointense")) || (DWI_Pat = "Homogeneous")){
-									document.getElementById('ccLS_Val').innerHTML = '2';
-									document.getElementById('Is_fpAML').innerHTML = 'Yes';
-									document.getElementById('Is_Onco').innerHTML = 'No';
-									document.getElementById('ccLS_Imp').innerHTML = ccLS2_fpAML;
-								} else {
-									document.getElementById('ccLS_Val').innerHTML = '3';
-									document.getElementById('Is_fpAML').innerHTML = 'No';
-									document.getElementById('Is_Onco').innerHTML = 'No';
-									document.getElementById('ccLS_Imp').innerHTML = ccLS3;
-								}
-							} else {
-								Cannot_Calc_ccLS("Diffusion Characteristics");
-							}
+							EvalDiffusion(YesVal=2, NoVal=3);
 							break;
 						case "No":
-							if (DWI_Sig && ADC_Sig && DWI_Pat) {
-								if (((DWI_Sig == "Hyperintense") && (ADC_Sig == "Hypointense")) || (DWI_Pat = "Homogeneous")){
-									document.getElementById('ccLS_Val').innerHTML = '3';
-									document.getElementById('Is_fpAML').innerHTML = 'No';
-									document.getElementById('Is_Onco').innerHTML = 'No';
-									document.getElementById('ccLS_Imp').innerHTML = ccLS3;
-								} else {
-									document.getElementById('ccLS_Val').innerHTML = '4';
-									document.getElementById('Is_fpAML').innerHTML = 'No';
-									document.getElementById('Is_Onco').innerHTML = 'No';
-									document.getElementById('ccLS_Imp').innerHTML = ccLS4;
-								}
-							} else {
-								Cannot_Calc_ccLS("Diffusion Characteristics");
-							}
+							EvalDiffusion(YesVal=3, NoVal=4);
 							break;
 						default:
 							Cannot_Calc_ccLS('Washout (ADER)');
 					}
 				break;
 				case "Moderate":
-					document.getElementById('ccLS_Val').innerHTML = '3';
-					document.getElementById('Is_fpAML').innerHTML = 'No';
-					document.getElementById('Is_Onco').innerHTML = 'No';
-					document.getElementById('ccLS_Imp').innerHTML = ccLS3;
+					set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
 					break;
 				case "Mild":
 					switch (T1_Fat) {
 						case "Microscopic Fat":
-							document.getElementById('ccLS_Val').innerHTML = '3';
-							document.getElementById('Is_fpAML').innerHTML = 'No';
-							document.getElementById('Is_Onco').innerHTML = 'No';
-							document.getElementById('ccLS_Imp').innerHTML = ccLS3;
+							switch(Uneq_MF) {
+								case "Yes":
+									set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
+									break;
+								case "No":
+									set_ccLS(val='1', fpAML='No', Onco='No', Imp=ccLS1);
+									break;
+								default:
+									Cannot_Calc_ccLS("Unequivocal Microscopic Fat");
+							}
+							
 							break;
 						case "No Fat":
-							document.getElementById('ccLS_Val').innerHTML = '1';
-							document.getElementById('Is_fpAML').innerHTML = 'No';
-							document.getElementById('Is_Onco').innerHTML = 'No';
-							document.getElementById('ccLS_Imp').innerHTML = ccLS1;
+							set_ccLS(val='1', fpAML='No', Onco='No', Imp=ccLS1);
 							break;
 						default:
 							Cannot_Calc_ccLS('T1 Chemical Shift');
@@ -499,6 +514,54 @@ function Run_ccLS() {
 	}
 }	
 
+function EvalDiffusion(YesVal, NoVal) {
+	var DWI_Sig = document.querySelector('input[name=DWI]:checked')?.value;
+	var ADC_Sig = document.querySelector('input[name=ADC]:checked')?.value;
+	var CME_Pat = document.querySelector('input[name=CM_Ptr]:checked')?.value;
+	var T2_Pat = document.querySelector('input[name=T2_Ptr]:checked')?.value;
+	console.log(YesVal + " + " + NoVal);
+	if (DWI_Sig && ADC_Sig) {
+		if ((DWI_Sig == "Hyperintense") && (ADC_Sig == "Hypointense")){
+			setDifccLS(YesVal);
+		} else {
+			if (CME_Pat && T2_Pat) {
+				if ((CME_Pat == "Homogeneous") && (T2_Pat == "Homogeneous")) {
+					setDifccLS(YesVal);
+				} else {
+					setDifccLS(NoVal);
+				}
+			} else {
+				Cannot_Calc_ccLS("Heterogeneity Characteristics");
+			}
+		}
+	} else {
+		if (CME_Pat && T2_Pat) {
+			if ((CME_Pat == "Homogeneous") && (T2_Pat == "Homogeneous")) {
+				setDifccLS(YesVal);
+			} else {
+				setDifccLS(NoVal);
+			}
+		} else {
+			Cannot_Calc_ccLS("Heterogeneity and Diffusion Characteristics");
+		}
+	}
+}
+
+function setDifccLS(setVal) {
+	console.log(setVal);
+	switch (setVal) {
+		case 2:
+			set_ccLS(val='2', fpAML='Yes', Onco='No', Imp=ccLS2_fpAML);
+			break;
+		case 3:
+			set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
+			break;
+		case 4:
+			set_ccLS(val='4', fpAML='No', Onco='No', Imp=ccLS4);
+			break;
+	}
+}
+
 function Cannot_Calc_ccLS(Missing) {
 	alert('No value given for ' + Missing + '. ccLS cannot be calculated.');
 	document.getElementById('ccLS_Val').innerHTML = 'N/A';
@@ -508,26 +571,18 @@ function Cannot_Calc_ccLS(Missing) {
 function ccLS_T2HypIso_Avid() {
 	var T1_Fat = document.querySelector('input[name=T1fat]:checked')?.value;
 	var SEI_Prz = document.querySelector('input[name=SEI]:checked')?.value;
+
 	switch (T1_Fat) {
 		case "Microscopic Fat":
-			document.getElementById('ccLS_Val').innerHTML = '5';
-			document.getElementById('Is_fpAML').innerHTML = 'No';
-			document.getElementById('Is_Onco').innerHTML = 'No';
-			document.getElementById('ccLS_Imp').innerHTML = ccLS5;
+			set_ccLS(val='5', fpAML='No', Onco='No', Imp=ccLS5);
 			break;
 		case "No Fat":
 			switch (SEI_Prz) {
 				case "Yes":
-					document.getElementById('ccLS_Val').innerHTML = '3';
-					document.getElementById('Is_fpAML').innerHTML = 'No';
-					document.getElementById('Is_Onco').innerHTML = 'No';
-					document.getElementById('ccLS_Imp').innerHTML = ccLS3;
+					set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
 					break;
 				case "No":
-					document.getElementById('ccLS_Val').innerHTML = '4';
-					document.getElementById('Is_fpAML').innerHTML = 'No';
-					document.getElementById('Is_Onco').innerHTML = 'No';
-					document.getElementById('ccLS_Imp').innerHTML = ccLS4;
+					set_ccLS(val='4', fpAML='No', Onco='No', Imp=ccLS4);
 					break;
 				default:
 					Cannot_Calc_ccLS("Segmental Enhancement Inversion");
@@ -540,34 +595,39 @@ function ccLS_T2HypIso_Avid() {
 
 function ccLS_T2HypIso_Mod() {
 	var T1_Fat = document.querySelector('input[name=T1fat]:checked')?.value;
-	var SEI_Prz = document.querySelector('input[name=SEI]:checked')?.value;
+	var Uneq_MF = document.querySelector('input[name=Unequivocal]:checked')?.value;
 	switch (T1_Fat) {
 		case "Microscopic Fat":
-			document.getElementById('ccLS_Val').innerHTML = '3';
-			document.getElementById('Is_fpAML').innerHTML = 'No';
-			document.getElementById('Is_Onco').innerHTML = 'No';
-			document.getElementById('ccLS_Imp').innerHTML = ccLS3;
-			break;
-		case "No Fat":
-			switch (SEI_Prz) {
+			switch (Uneq_MF) {
 				case "Yes":
-					document.getElementById('ccLS_Val').innerHTML = '2';
-					document.getElementById('Is_fpAML').innerHTML = 'No';
-					document.getElementById('Is_Onco').innerHTML = 'Yes';
-					document.getElementById('ccLS_Imp').innerHTML = ccLS2_Onco;
+					set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
 					break;
 				case "No":
-					document.getElementById('ccLS_Val').innerHTML = '3';
-					document.getElementById('Is_fpAML').innerHTML = 'No';
-					document.getElementById('Is_Onco').innerHTML = 'No';
-					document.getElementById('ccLS_Imp').innerHTML = ccLS3;
+					ccLS_T2HypIso_Mod_NF();
 					break;
 				default:
-					Cannot_Calc_ccLS("Segmental Enhancement Inversion");
+					Cannot_Calc_ccLS("Unequivocal Microscopic Fat");
 			}
+			break;
+		case "No Fat":
+			ccLS_T2HypIso_Mod_NF();
 			break;
 		default:
 			Cannot_Calc_ccLS("T1 Chemical Shift");
+	}
+}
+
+function ccLS_T2HypIso_Mod_NF() {
+	var SEI_Prz = document.querySelector('input[name=SEI]:checked')?.value;
+	switch (SEI_Prz) {
+		case "Yes":
+			set_ccLS(val='2', fpAML='No', Onco='Yes', Imp=ccLS2_Onco);
+			break;
+		case "No":
+			set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
+			break;
+		default:
+			Cannot_Calc_ccLS("Segmental Enhancement Inversion");
 	}
 }
 
@@ -646,11 +706,15 @@ function RunPriorReport() {
 	
 function Copy_Div(div) {
 	var r = document.createRange();
-	r.selectNode(document.getElementById(div));
+	var to_Copy = document.getElementById(div);
+	r.selectNode(to_Copy);
 	window.getSelection().removeAllRanges();
 	window.getSelection().addRange(r);
 	document.execCommand('copy');
 	window.getSelection().removeAllRanges();
+	to_Copy.classList.toggle('anim');
+	setTimeout(() => {  to_Copy.classList.toggle('anim'); }, 500);
+
 }
 
 function UnselectBtn(btn) {

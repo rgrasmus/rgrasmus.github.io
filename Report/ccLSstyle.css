@@ -1,7 +1,63 @@
 body {
-	background-color: white;
+	background-color: #E4E7EB;
+	color: #1F2933;
 	font-size: 100%;	
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+body.dark_mode {
+	background-color: #1F2933;
+	color: #E4E7EB;
+}
+body.dark_mode a:link {
+	color: #00A8CC;
+}
+
+body.dark_mode a:visited {
+	color: #F79B19;
+}
+
+body.dark_mode .R_Lbl {
+	background-color:  #504A40;
+	border-color: black;
+}
+
+body.dark_mode .dark_toggle {
+	color: #FDB813;
+}
+body.dark_mode h1 {
+	color: #63e6be;
+}
+
+body.dark_mode .Report_Text {
+	border-color: #D9E2EC;;
+	background-color: #243B53
+}
+
+div.anim {
+	animation: shrink_grow 0.4s;
+	/* When the animation is finished, start again */
+	/*animation-iteration-count: infinite;*/
+}
+
+@keyframes shrink_grow {
+	30% {transform: scale(0.6);}
+	90% {transform: scale(1.2);}
+	100% {transform: scale(1.0);}
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
 h1 {
@@ -37,8 +93,7 @@ input[type="radio"] {
 .R_Lbl {
     height: 100%;
     display: inline-block;
-    background: white;
-    border: 3px solid #344a6b;
+    background: #D3CEC4;
     border-radius: 20px;
 	padding: 0.7em 0.9em;
 	margin-bottom: 9px;
@@ -49,11 +104,19 @@ input[type="radio"] {
 	-webkit-transition-duration: 0.4s; /* Safari */
 	transition-duration: 0.4s;
 }
+
 .Dim_Inp {
 	display: inline-block;
-	border: 2px solid gray;
 	width: 5em;
 	padding: 2px;
+	border: 3px solid gray;
+	border-radius: 6px;
+	font-size: 1.0em;
+}
+
+.Dim_Inp:focus {
+	border: 3px solid black;
+	outline: none;
 }
 input[type="date"] {
 	display: inline-block;
@@ -66,8 +129,10 @@ input[type="date"] {
 	height: 100%;
 	width: 75%;
 	display: block;
-	border: 3px solid gray;
-	background-color: lightgray;
+	border-width: 3px;
+	border-style: solid;
+	border-color: #243B53;
+	background-color: #D9E2EC;
 	border-radius: 20px;
 	padding: 1em;
 	margin: 10px
@@ -138,12 +203,12 @@ footer div {
 	font-size: 1.0em;
 	-webkit-transition-duration: 0.4s; /* Safari */
 	transition-duration: 0.4s;
+	cursor: pointer;
  }
 
  @media (hover: hover) {
 	 .button:hover {
 		 background-color: darkgray !important;
-		 cursor: pointer;
 	 }
 	 .help_icon:hover {
 		 color: red;
@@ -151,8 +216,20 @@ footer div {
 	 }
 	 .R_Lbl:hover {
 		 cursor: pointer;
-		 background-color: lightblue;
+		 background-color: #857F72 !important;
 	 }
+}
+.dark_toggle {
+	background-color: gray;
+	color: purple;
+	padding: 0.7em 1.5em;
+	border-radius: 20px;
+	cursor: pointer;
+	margin: 1em;
+}
+
+.dark_toggle:hover {
+	background-color: darkgray;
 }
 
 .button:disabled,
@@ -182,18 +259,37 @@ footer div {
 .modal-content {
     position: relative;
     background-color: #fefefe;
-    margin: auto;
+    margin: auto auto;
     padding: 0;
     border: 1px solid #888;
     width: 80%;
-	overflow: scroll;
+	overflow-y: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
 }
+body.dark_mode .modal-content {
+	background-color:  #484848;
+}
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
 
+.modal-body {
+	padding: 2px 16px;
+	max-height:  60vh !important;
+	overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0}
@@ -218,18 +314,4 @@ footer div {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-}
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
 }

@@ -94,15 +94,15 @@ input[type="radio"] {
     height: 100%;
     display: inline-block;
     background: #D3CEC4;
-    border-radius: 20px;
+    border-radius: 18px;
 	padding: 0.7em 0.9em;
 	margin-bottom: 9px;
     text-align: center;
     position: relative;
 	font-size: 1.0em;
 	box-shadow: 0 6px #999;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
+	-webkit-transition-duration: 0.3s; /* Safari */
+	transition-duration: 0.3s;
 }
 
 .Dim_Inp {
@@ -146,7 +146,7 @@ input[type="date"] {
 
 input[type="radio"]:checked + .R_Lbl {
 	background: #344a6b;
-	color: hsla(215, 0%, 100%, 1);
+	color: #E4E7EB;
 	box-shadow: 0 3px #666;
 	transform: translateY(3px);
 }

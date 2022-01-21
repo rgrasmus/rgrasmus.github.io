@@ -28,7 +28,9 @@
 
 <div id="Size">
 	<h2>Size of the mass</h2>
-	<input type="number" step="0.1" min="0" class="Dim_Inp" id="AP_sz"> (AP) x <input type="number" step="0.1" min="0" class="Dim_Inp" id="LL_sz"> (LL) x <input type="number" step="0.1" min="0" class="Dim_Inp" id="CC_sz"> (CC) cm
+	<input type="number" step="0.1" min="0" class="Dim_Inp" id="AP_sz" oninput="CheckStage()"> (AP) x 
+	<input type="number" step="0.1" min="0" class="Dim_Inp" id="LL_sz" oninput="CheckStage()"> (LL) x 
+	<input type="number" step="0.1" min="0" class="Dim_Inp" id="CC_sz" oninput="CheckStage()"> (CC) cm
 </div>
 <div id="Prior">
 	<h2>Is prior imaging available?</h2>
@@ -63,9 +65,9 @@
 	
 <div id="Depth">
 	<h2>Depth Extension</h2>
-	<input type="radio" name="Depth" id="Depth_Par" value="Renal Parenchyma"><label class="R_Lbl" for="Depth_Par">Renal Parenchyma</label>
-	<input type="radio" name="Depth" id="Depth_Int" value="Renal/Hilar Interface"><label class="R_Lbl" for="Depth_Int">Renal/Hilar Interface</label>
-	<input type="radio" name="Depth" id="Depth_Hil" value="Hilar Fat/Collecting System"><label class="R_Lbl" for="Depth_Hil">Hilar Fat/Collecting System</label>
+	<input type="radio" name="Depth" id="Depth_Par" value="Renal Parenchyma" checked="checked" onclick="CheckStage()"><label class="R_Lbl" for="Depth_Par">Renal Parenchyma</label>
+	<input type="radio" name="Depth" id="Depth_Int" value="Renal/Hilar Interface" onclick="CheckStage()"><label class="R_Lbl" for="Depth_Int">Renal/Hilar Interface</label>
+	<input type="radio" name="Depth" id="Depth_Hil" value="Hilar Fat/Collecting System" onclick="CheckStage()"><label class="R_Lbl" for="Depth_Hil">Hilar Fat/Collecting System</label>
 </div>
 	
 <div id="T2SI" >
@@ -133,9 +135,9 @@
 		<button id="Btn_CM_RunCalc" class="button" onclick="CM_RunCalc()">Calculate</button>
 		<button id="Btn_CM_ResetCalc" class="button" onclick="CM_ResetCalc()">Reset</button>
 		<div id="Calc_CMEnh">
-			<h4>Tumor enhancement:  <span id="CM_Tumor">NaN</span>%</h4>
-			<h4>Cortex enhancement: <span id="CM_Cortex">NaN</span>%</h4>
-			<h4>Tumor-Cortex Ratio: <span id="TC_Ratio">NaN</span>%</h4>
+			<h4>Tumor enhancement:  <span id="CM_Tumor">TBD</span>%</h4>
+			<h4>Cortex enhancement: <span id="CM_Cortex">TBD</span>%</h4>
+			<h4>Tumor-Cortex Ratio: <span id="TC_Ratio">TBD</span>%</h4>
 		</div>
 	</div>
 	<h3>Pattern of Enhancement</h3>
@@ -165,9 +167,9 @@
 	
 <div id="T1CS">
 	<h2>T1 Chemical Shift</h2>
-	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat"><label class="R_Lbl" for="T1_Macro" onClick="T1CS('Macro')">Macroscopic Fat</label>
-	<input type="radio" name="T1fat" id="T1_Micro" value="Microscopic Fat"><label class="R_Lbl" for="T1_Micro" onclick="T1CS('Micro')">Microscopic Fat</label>
-	<input type="radio" name="T1fat" id="T1_NoFat" value="No Fat"><label class="R_Lbl" for="T1_NoFat" onclick="T1CS('NoFat')">No Fat</label>
+	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat"><label class="R_Lbl" for="T1_Macro" onClick="T1CS()">Macroscopic Fat</label>
+	<input type="radio" name="T1fat" id="T1_Micro" value="Microscopic Fat"><label class="R_Lbl" for="T1_Micro">Microscopic Fat</label>
+	<input type="radio" name="T1fat" id="T1_NoFat" value="No Fat"><label class="R_Lbl" for="T1_NoFat">No Fat</label>
 	<button id="Btn_T1_OpenCalc" class="button" onclick="T1_OpenCalc()">Help Me Calculate</button>
 	<div id="CalcT1" class="calculator" style="display: none">
 		<h4>In-Phase Imaging</h4>
@@ -187,15 +189,11 @@
 		<button id="Btn_CalcMicFat" class="button" onclick="T1_RunCalc()">Calculate</button>
 		<button id="Btn_CalcMicFat_Reset" class="button" onclick="T1_ResetCalc()">Reset</button>
 		<div id="T1_Result">
-			<h4>The calculated 2 standard deviation difference is <span id="T1_Dif">NaN</span><br>
+			<h4>The calculated 2 standard deviation difference is <span id="T1_Dif">TBD</span><br>
 			Microscopic fat is present if the difference is positive.</h4>
 		</div>
 	</div>
-	<div id="UnequivMicFat" style="display: none">
-		<h3>Is Microscopic Fat Unequivocally Present?</h3>
-		<input type="radio" name="Unequivocal" id="Unequiv_Yes" value="Yes"><label class="R_Lbl" for="Unequiv_Yes">Yes</label>
-		<input type="radio" name="Unequivocal" id="Unequiv_No" value="No"><label class="R_Lbl" for="Unequiv_No">No</label>
-	</div>
+
 </div>	
 
 <div id="DWI">
@@ -258,7 +256,7 @@
 		<button id="Btn_CalcADER" class="button" onclick="ADER_RunCalc()">Calculate</button>
 		<button id="Btn_CalcADER_Reset" class="button" onclick="ADER_ResetCalc()">Reset</button>
 		<div id="Calc_ADER">
-			<h4>The calculated ADER is: <span id="ADER_Num">NaN</span></h4>
+			<h4>The calculated ADER is: <span id="ADER_Num">TBD</span></h4>
 		</div>
 	</div>
 
@@ -266,7 +264,7 @@
 
 <div id="MR_Stage">
 	<h2>MRI Staging</h2>
-	<input type="radio" name="MR_St" id="Stage_T1a" value="T1a (&le; 4 cm)"><label class="R_Lbl" for="Stage_T1a">T1a (&le; 4 cm)</label>
+	<input type="radio" name="MR_St" id="Stage_T1a" value="T1a (&le; 4 cm)" checked="checked"><label class="R_Lbl" for="Stage_T1a">T1a (&le; 4 cm)</label>
 	<input type="radio" name="MR_St" id="Stage_T1b" value="T1b (&gt; 4 and &le; 7 cm)"><label class="R_Lbl" for="Stage_T1b">T1b (&gt; 4 and &le; 7 cm)</label>
 	<input type="radio" name="MR_St" id="Stage_T2" value="T2 (&gt; 7 cm)"><label class="R_Lbl" for="Stage_T2">T2 (&gt; 7 cm)</label>
 	<input type="radio" name="MR_St" id="Stage_T3" value="T3 (extension to renal vein/collecting system/perirenal fat)"><label class="R_Lbl" for="Stage_T3">T3 (extension to renal vein/collecting system/perirenal fat)</label>
@@ -275,25 +273,25 @@
 
 <div id="RV_Anat">
 	<h2>Renal Vein Anatomy</h2>
-	<input type="radio" name="RV_Anat" id="RVA_Norm" value="Usual"><label class="R_Lbl" for="RVA_Norm">Usual</label>
+	<input type="radio" name="RV_Anat" id="RVA_Norm" value="Usual" checked="checked"><label class="R_Lbl" for="RVA_Norm">Usual</label>
 	<input type="radio" name="RV_Anat" id="RVA_Circ" value="Circumaortic"><label class="R_Lbl" for="RVA_Circ">Circumaortic</label>
 	<input type="radio" name="RV_Anat" id="RVA_Retr" value="Retroaortic"><label class="R_Lbl" for="RVA_Retr">Retroaortic</label>
 </div>	
 
 <div id="RV_Thr">
 	<h2>Renal Vein Thrombus</h2>
-	<input type="radio" name="RV_Thr" id="RVT_No" value="Absent"><label class="R_Lbl" for="RVT_No">Absent</label>
-	<input type="radio" name="RV_Thr" id="RVT_Intra" value="Intra-Renal"><label class="R_Lbl" for="RVT_Intra">Intra-Renal</label>
-	<input type="radio" name="RV_Thr" id="RVT_Extra" value="Extra-Renal Renal Vein (Level 0)"><label class="R_Lbl" for="RVT_Extra">Extra-Renal Renal Vein (Level 0)</label>
-	<input type="radio" name="RV_Thr" id="RVT_IVC_1" value="IVC &le; 2 cm above renal vein (Level I)"><label class="R_Lbl" for="RVT_IVC_1">IVC &le; 2 cm above renal vein (Level I)</label>
-	<input type="radio" name="RV_Thr" id="RVT_IVC_2" value="IVC &gt; 2 cm above renal vein &amp; below hepatic vein (Level II)"><label class="R_Lbl" for="RVT_IVC_2">IVC &gt; 2 cm above renal vein &amp; below hepatic vein (Level II)</label>
-	<input type="radio" name="RV_Thr" id="RVT_IVC_3" value="IVC above hepatic vein &amp; below diaphragm (Level III)"><label class="R_Lbl" for="RVT_IVC_3">IVC above hepatic vein &amp; below diaphragm (Level III)</label>
-	<input type="radio" name="RV_Thr" id="RVT_IVC_4" value="Supra-diaphragmatic IVC or right atrium (Level IV)"><label class="R_Lbl" for="RVT_IVC_4">Supra-diaphragmatic IVC or right atrium (Level IV)</label>
+	<input type="radio" name="RV_Thr" id="RVT_No" value="Absent" checked="checked" onclick="CheckStage()"><label class="R_Lbl" for="RVT_No">Absent</label>
+	<input type="radio" name="RV_Thr" id="RVT_Intra" value="Intra-Renal" onclick="CheckStage()"><label class="R_Lbl" for="RVT_Intra">Intra-Renal</label>
+	<input type="radio" name="RV_Thr" id="RVT_Extra" value="Extra-Renal Renal Vein (Level 0)" onclick="CheckStage()"><label class="R_Lbl" for="RVT_Extra">Extra-Renal Renal Vein (Level 0)</label>
+	<input type="radio" name="RV_Thr" id="RVT_IVC_1" value="IVC &le; 2 cm above renal vein (Level I)" onclick="CheckStage()"><label class="R_Lbl" for="RVT_IVC_1">IVC &le; 2 cm above renal vein (Level I)</label>
+	<input type="radio" name="RV_Thr" id="RVT_IVC_2" value="IVC &gt; 2 cm above renal vein &amp; below hepatic vein (Level II)" onclick="CheckStage()"><label class="R_Lbl" for="RVT_IVC_2">IVC &gt; 2 cm above renal vein &amp; below hepatic vein (Level II)</label>
+	<input type="radio" name="RV_Thr" id="RVT_IVC_3" value="IVC above hepatic vein &amp; below diaphragm (Level III)" onclick="CheckStage()"><label class="R_Lbl" for="RVT_IVC_3">IVC above hepatic vein &amp; below diaphragm (Level III)</label>
+	<input type="radio" name="RV_Thr" id="RVT_IVC_4" value="Supra-diaphragmatic IVC or right atrium (Level IV)" onclick="CheckStage()"><label class="R_Lbl" for="RVT_IVC_4">Supra-diaphragmatic IVC or right atrium (Level IV)</label>
 </div>
 	
 <div id="RA_Anat">
 	<h2>Renal Artery Anatomy</h2>
-	<input type="radio" name="RA_Anat" id="RA_Norm" value="Single Artery"><label class="R_Lbl" for="RA_Norm">Single Artery</label>
+	<input type="radio" name="RA_Anat" id="RA_Norm" value="Single Artery" checked="checked"><label class="R_Lbl" for="RA_Norm">Single Artery</label>
 	<input type="radio" name="RA_Anat" id="RA_Ac_Upr" value="Accessory Artery for Upper Pole"><label class="R_Lbl" for="RA_Ac_Upr">Accessory Artery for Upper Pole</label>
 	<input type="radio" name="RA_Anat" id="RA_Ac_Lwr" value="Accessory Artery for Lower Pole"><label class="R_Lbl" for="RA_Ac_Lwr">Accessory Artery for Lower Pole</label>
 	<input type="radio" name="RA_Anat" id="RA_Ac_Both" value="Accessory Arteries for Both Upper &amp; Lower Poles"><label class="R_Lbl" for="RA_Ac_Both">Accessory Arteries for Both Upper &amp; Lower Poles</label>

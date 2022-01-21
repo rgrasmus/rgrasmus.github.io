@@ -150,7 +150,17 @@ input[type="radio"]:checked + .R_Lbl {
 	box-shadow: 0 3px #666;
 	transform: translateY(3px);
 }
-
+input[type="radio"]:disabled + .R_Lbl {
+	border: 1px solid #999999;
+	background-color: #cccccc;
+	color: #666666;
+	box-shadow: none;
+	cursor: not-allowed;
+}
+input[type="radio"]:hover:not([disabled]) +.R_Lbl {
+		 cursor: pointer;
+		 background-color: #857F72 !important;
+}
 footer {
 	background: #344a6b;
 	position: fixed;
@@ -213,10 +223,6 @@ footer div {
 	 .help_icon:hover {
 		 color: red;
 		 cursor: pointer;
-	 }
-	 .R_Lbl:hover {
-		 cursor: pointer;
-		 background-color: #857F72 !important;
 	 }
 }
 .dark_toggle {

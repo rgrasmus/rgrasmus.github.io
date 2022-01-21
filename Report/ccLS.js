@@ -52,6 +52,45 @@ function Toggle_Dark() {
 	DarkTgl.classList.toggle("fa-sun")
 }
 
+function CheckStage() {
+	var MaxSize = RunGetSize();
+	var Depth = document.querySelector('input[name=Depth]:checked')?.value;
+	var RVT_Prz = document.querySelector('input[name=RV_Thr]:checked')?.value;
+
+	var T1a_Btn = document.getElementById("Stage_T1a");
+	var T1b_Btn = document.getElementById("Stage_T1b");
+	var T2_Btn = document.getElementById("Stage_T2");
+	var T3_Btn = document.getElementById("Stage_T3");
+	var T4_Btn = document.getElementById("Stage_T4");
+
+	if ((Depth == "Hilar Fat/Collecting System") || (RVT_Prz !== "Absent")) {
+		T1a_Btn.disabled = true;
+		T1b_Btn.disabled = true;
+		T2_Btn.disabled = true;
+		if (T4_Btn.checked == false) T3_Btn.checked = true;
+	} else if (MaxSize > 7) {
+		T1a_Btn.disabled = true;
+		T1b_Btn.disabled = true;
+		T2_Btn.disabled = false;
+		if ((T4_Btn.checked == false) && (T3_Btn.checked == false)) T2_Btn.checked = true;
+	} else if (MaxSize > 4) {
+		T1a_Btn.disabled = true;
+		T2_Btn.disabled = true;
+		T1b_Btn.disabled = false;
+		if ((T4_Btn.checked == false) && (T3_Btn.checked == false)) T1b_Btn.checked = true;
+	} else if (MaxSize > 0) {
+		T1b_Btn.disabled = true;
+		T2_Btn.disabled = true;
+		T1a_Btn.disabled = false;
+		if ((T4_Btn.checked == false) && (T3_Btn.checked == false)) T1a_Btn.checked = true;
+	} else {
+		T1a_Btn.disabled = false;
+		if ((T4_Btn.checked == false) && (T3_Btn.checked == false)) T1a_Btn.checked = true;
+		T1b_Btn.disabled = false;
+		T2_Btn.disabled = false;
+	}
+}
+
 function CheckPrior(NewVal) {
 	var PriorDiv = document.getElementById("Prior_Info");
 	var PriorDate = document.getElementById("Prior_Date");
@@ -70,26 +109,8 @@ function CheckPrior(NewVal) {
 	}
 }
 
-function T1CS(Resp) {
-	var Yes_R = document.getElementById('Unequiv_Yes');
-	var No_R = document.getElementById('Unequiv_No');
-	var UneqDiv = document.getElementById('UnequivMicFat');
-
-	switch (Resp) {
-		case "Macro":
-			alert("A renal tumor with macroscopic fat is highly likely to be a classic angiomyolipoma (AML) and the ccLS algorithm does not apply to such tumors");
-			Yes_R.checked = false;
-			No_R.checked = false;
-			UneqDiv.style.display = "none";
-			break;
-		case "Micro":
-			UneqDiv.style.display = "block";
-			break;
-		case "NoFat":
-			Yes_R.checked = false;
-			No_R.checked = false;
-			UneqDiv.style.display = "none";
-	}
+function T1CS() {
+	alert("A renal tumor with macroscopic fat is highly likely to be a classic angiomyolipoma (AML) and the ccLS algorithm does not apply to such tumors");
 }
 
 function CM_OpenCalc() {
@@ -220,11 +241,9 @@ function T1_RunCalc() {
 	if (MicFatPresent>0) {
 		Micro.checked = true;
 		T1Dif_Text.innerHTML = "+" + MicFatPresent.toFixed(1);
-		T1CS('Micro');
 	} else {
 		NoFat.checked = true;
 		T1Dif_Text.innerHTML = MicFatPresent.toFixed(1);
-		T1CS('NoFat');
 	}
 }
 
@@ -236,7 +255,6 @@ function T1_ResetCalc() {
 	NoFat.checked = false;
 	
 	T1_ClearVars();
-	T1CS('NoFat');
 }
 
 function ADER_OpenCalc() {
@@ -393,7 +411,6 @@ function Run_ccLS() {
 	var Washout = document.querySelector('input[name=Wash]:checked')?.value;
 	var DWI_Sig = document.querySelector('input[name=DWI]:checked')?.value;
 	var ADC_Sig = document.querySelector('input[name=ADC]:checked')?.value;
-	var Uneq_MF = document.querySelector('input[name=Unequivocal]:checked')?.value;
 
 	if (T1_Fat == "Macroscopic Fat") {
 		set_ccLS(val='N/A', fpAML='No', Onco='No', Imp=ccLS_cAML);
@@ -427,25 +444,7 @@ function Run_ccLS() {
 				case "Mild":
 					switch(T1_Fat) {
 						case "Microscopic Fat":
-							switch(Uneq_MF) {
-								case "Yes":
-									set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
-									break;
-								case "No":
-									if (DWI_Sig && ADC_Sig) {
-										if ((DWI_Sig == "Hyperintense") && (ADC_Sig == "Hypointense")) {
-											set_ccLS(val='1', fpAML='No', Onco='No', Imp=ccLS1);
-										} else {
-											set_ccLS(val='2', fpAML='No', Onco='No', Imp=ccLS2);
-										}
-									} else {
-										Cannot_Calc_ccLS("Diffusion Characteristics");
-									}
-									break;
-								default:
-									Cannot_Calc_ccLS("Unequivocal Microscopic Fat");
-							}
-							
+							set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
 							break;
 						case "No Fat":
 							if (DWI_Sig && ADC_Sig) {
@@ -486,17 +485,7 @@ function Run_ccLS() {
 				case "Mild":
 					switch (T1_Fat) {
 						case "Microscopic Fat":
-							switch(Uneq_MF) {
-								case "Yes":
-									set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
-									break;
-								case "No":
-									set_ccLS(val='1', fpAML='No', Onco='No', Imp=ccLS1);
-									break;
-								default:
-									Cannot_Calc_ccLS("Unequivocal Microscopic Fat");
-							}
-							
+							set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
 							break;
 						case "No Fat":
 							set_ccLS(val='1', fpAML='No', Onco='No', Imp=ccLS1);
@@ -595,19 +584,9 @@ function ccLS_T2HypIso_Avid() {
 
 function ccLS_T2HypIso_Mod() {
 	var T1_Fat = document.querySelector('input[name=T1fat]:checked')?.value;
-	var Uneq_MF = document.querySelector('input[name=Unequivocal]:checked')?.value;
 	switch (T1_Fat) {
 		case "Microscopic Fat":
-			switch (Uneq_MF) {
-				case "Yes":
-					set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
-					break;
-				case "No":
-					ccLS_T2HypIso_Mod_NF();
-					break;
-				default:
-					Cannot_Calc_ccLS("Unequivocal Microscopic Fat");
-			}
+			set_ccLS(val='3', fpAML='No', Onco='No', Imp=ccLS3);
 			break;
 		case "No Fat":
 			ccLS_T2HypIso_Mod_NF();

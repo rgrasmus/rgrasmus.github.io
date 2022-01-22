@@ -36,7 +36,7 @@
 	<input type="number" step="0.1" min="0" class="Dim_Inp" id="CC_sz" oninput="CheckStage()"> (CC) cm
 </div>
 <div id="Prior">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChoosePrior(event)">Is prior imaging available?</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChoosePrior(event)">Is prior imaging available?</span></h2>
 	<input type="radio" name="Prior_Avl" id="Prior_Avl_Y" value="true"><label class="R_Lbl" for="Prior_Avl_Y" onClick="CheckPrior(1)">Yes</label>
 	<input type="radio" name="Prior_Avl" id="Prior_Avl_N" value="false"><label class="R_Lbl" for="Prior_Avl_N" onClick="CheckPrior(2)">No</label>
 	<div id="Prior_Info" style="display: none">
@@ -49,25 +49,25 @@
 </div>
 <div id="Location">
 	<h2>Location of the mass</h2>
-	<p tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseLat(event)">Laterality: </p>
+	<p><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseLat(event)">Laterality: </span></p>
 	<input type="radio" name="Loc_LR" id="Loc_Left" value="Left"><label class="R_Lbl" for="Loc_Left">Left</label>
 	<input type="radio" name="Loc_LR" id="Loc_Right" value="Right"><label class="R_Lbl" for="Loc_Right">Right</label>
-	<p tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCC(event)">Along CC dimension: </p>
+	<p><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCC(event)">Along CC dimension: </span></p>
 	<input type="radio" name="Loc_CC" id="Loc_CC_Upr" value="Upper"><label class="R_Lbl" for="Loc_CC_Upr">Upper</label>
 	<input type="radio" name="Loc_CC" id="Loc_CC_Mid" value="Interpolar"><label class="R_Lbl" for="Loc_CC_Mid">Interpolar</label>
 	<input type="radio" name="Loc_CC" id="Loc_CC_Lwr" value="Lower"><label class="R_Lbl" for="Loc_CC_Lwr">Lower</label>
-	<p tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseLL(event)">Along LL dimension: </p>
+	<p><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseLL(event)">Along LL dimension: </span></p>
 	<input type="radio" name="Loc_LL" id="Loc_LL_Med" value="Medial"><label class="R_Lbl" for="Loc_LL_Med">Medial</label>
 	<input type="radio" name="Loc_LL" id="Loc_LL_Mid" value="Midline (LL)"><label class="R_Lbl" for="Loc_LL_Mid">Midline</label>
 	<input type="radio" name="Loc_LL" id="Loc_LL_Lat" value="Lateral"><label class="R_Lbl" for="Loc_LL_Lat">Lateral</label>
-	<p tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseAP(event)">Along AP dimension: </p>
+	<p><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseAP(event)">Along AP dimension: </span></p>
 	<input type="radio" name="Loc_AP" id="Loc_AP_Ant" value="Anterior"><label class="R_Lbl" for="Loc_AP_Ant">Anterior</label>
 	<input type="radio" name="Loc_AP" id="Loc_AP_Mid" value="Midline (AP)"><label class="R_Lbl" for="Loc_AP_Mid">Midline</label>
 	<input type="radio" name="Loc_AP" id="Loc_AP_Pos" value="Posterior"><label class="R_Lbl" for="Loc_AP_Pos">Posterior</label>
 </div>
 	
 <div id="Depth">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseDepth(event)">Depth Extension</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseDepth(event)">Depth Extension</span></h2>
 	<input type="radio" name="Depth" id="Depth_Par" value="Renal Parenchyma" checked="checked" onclick="CheckStage()"><label class="R_Lbl" for="Depth_Par">Renal Parenchyma</label>
 	<input type="radio" name="Depth" id="Depth_Int" value="Renal/Hilar Interface" onclick="CheckStage()"><label class="R_Lbl" for="Depth_Int">Renal/Hilar Interface</label>
 	<input type="radio" name="Depth" id="Depth_Hil" value="Hilar Fat/Collecting System" onclick="CheckStage()"><label class="R_Lbl" for="Depth_Hil">Hilar Fat/Collecting System</label>
@@ -76,12 +76,12 @@
 <div id="T2SI" >
 	<h2>T2 Signal Intensity &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#T2SI_modal"></i></h2>
 	<p>Assess T2 signal <em>ONLY</em> in enhancing component of tumor </p> 
-	<h3 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Int(event)">Intensity Relative to Background Renal Cortex</h3>
+	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Int(event)">Intensity Relative to Background Renal Cortex</span></h3>
 	<input type="radio" name="T2_Int" id="T2_Hyper" value="Hyperintense"><label class="R_Lbl" for="T2_Hyper">Hyperintense</label>
 	<input type="radio" name="T2_Int" id="T2_Iso" value="Isointense"><label class="R_Lbl" for="T2_Iso">Isointense</label>
 	<input type="radio" name="T2_Int" id="T2_Hypo" value="Hypointense"><label class="R_Lbl" for="T2_Hypo">Hypointense</label>
 	
-	<h3 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Ptr(event)">Pattern of T2 Signal</h3>
+	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Ptr(event)">Pattern of T2 Signal</span></h3>
 	<input type="radio" name="T2_Ptr" id="T2_Homo" value="Homogeneous"><label class="R_Lbl" for="T2_Homo">Homogeneous</label>
 	<input type="radio" name="T2_Ptr" id="T2_SlHet" value="Slightly Heterogeneous"><label class="R_Lbl" for="T2_SlHet">Slightly Heterogeneous</label>
 	<input type="radio" name="T2_Ptr" id="T2_Het" value="Heterogeneous"><label class="R_Lbl" for="T2_Het">Heterogeneous</label>
@@ -112,7 +112,7 @@
 <div id="CMEnhance">
 	<h2>Enhancement Characteristics at Corticomedullary (CM) Phase &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#CME_modal"></i></h2>
 	<p>Assess area with the <em>HIGHEST</em> enhancement on CM phase </p>
-	<h3 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCME(event)">Degree of Enhancement Relative to Background Renal Cortex</h3>
+	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCME(event)">Degree of Enhancement Relative to Background Renal Cortex</span></h3>
 	<input type="radio" name="CME" id="CME_Int" value="Intense"><label class="R_Lbl" for="CME_Int">Intense (&gt; 75%)</label>
 	<input type="radio" name="CME" id="CME_Mod" value="Moderate"><label class="R_Lbl" for="CME_Mod">Moderate (40%-75%)</label>
 	<input type="radio" name="CME" id="CME_Mld" value="Mild"><label class="R_Lbl" for="CME_Mld">Mild (&lt; 40%)</label>
@@ -143,7 +143,7 @@
 			<h4>Tumor-Cortex Ratio: <span id="TC_Ratio">TBD</span>%</h4>
 		</div>
 	</div>
-	<h3 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCMPtr(event)">Pattern of Enhancement</h3>
+	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCMPtr(event)">Pattern of Enhancement</span></h3>
 	<input type="radio" name="CM_Ptr" id="CM_Homo" value="Homogeneous"><label class="R_Lbl" for="CM_Homo">Homogeneous</label>
 	<input type="radio" name="CM_Ptr" id="CM_SlHet" value="Slightly Heterogeneous"><label class="R_Lbl" for="CM_SlHet">Slightly Heterogeneous</label>
 	<input type="radio" name="CM_Ptr" id="CM_Het" value="Heterogeneous"><label class="R_Lbl" for="CM_Het">Heterogeneous</label>
@@ -169,7 +169,7 @@
 </div>
 	
 <div id="T1CS">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT1CS(event)">T1 Chemical Shift</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT1CS(event)">T1 Chemical Shift</span></h2>
 	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat"><label class="R_Lbl" for="T1_Macro" onClick="T1CS()">Macroscopic Fat</label>
 	<input type="radio" name="T1fat" id="T1_Micro" value="Microscopic Fat"><label class="R_Lbl" for="T1_Micro">Microscopic Fat</label>
 	<input type="radio" name="T1fat" id="T1_NoFat" value="No Fat"><label class="R_Lbl" for="T1_NoFat">No Fat</label>
@@ -202,19 +202,19 @@
 <div id="DWI">
 	<h2>Diffusion Weighted Imaging (DWI) Characteristics</h2>
 	<p>Assess on high b-value DWI sequence (i.e. 800 sec/mm<sup>2</sup>)</p>
-	<h3 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseDWI(event)">DWI Signal Relative to Background Renal Cortex</h3>
+	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseDWI(event)">DWI Signal Relative to Background Renal Cortex</span></h3>
 	<input type="radio" name="DWI" id="DWI_Hyper" value="Hyperintense"><label class="R_Lbl" for="DWI_Hyper">Hyperintense</label>
 	<input type="radio" name="DWI" id="DWI_Iso" value="Isointense"><label class="R_Lbl" for="DWI_Iso">Isointense</label>
 	<input type="radio" name="DWI" id="DWI_Hypo" value="Hypointense"><label class="R_Lbl" for="DWI_Hypo">Hypointense</label>
 	
-	<h3 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseADC(event)">Apparent Diffusion Component (ADC) Map Signal Relative to Background Renal Cortex</h3>
+	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseADC(event)">Apparent Diffusion Component (ADC) Map Signal Relative to Background Renal Cortex</span></h3>
 	<input type="radio" name="ADC" id="ADC_Hyper" value="Hyperintense"><label class="R_Lbl" for="ADC_Hyper">Hyperintense</label>
 	<input type="radio" name="ADC" id="ADC_Iso" value="Isointense"><label class="R_Lbl" for="ADC_Iso">Isointense</label>
 	<input type="radio" name="ADC" id="ADC_Hypo" value="Hypointense"><label class="R_Lbl" for="ADC_Hypo">Hypointense</label>
 </div>	
 
 <div id="SEI">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseSEI(event)">Is Segmental Enhancement Inversion (SEI) Present? &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#SEI_modal"></i></h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseSEI(event)">Is Segmental Enhancement Inversion (SEI) Present? &nbsp;</span><i class="fas fa-info-circle help_icon openmodal" href="#SEI_modal"></i></h2>
 	<input type="radio" name="SEI" id="SEI_Y" value="Yes"><label class="R_Lbl" for="SEI_Y">Yes</label>
 	<input type="radio" name="SEI" id="SEI_N" value="No"><label class="R_Lbl" for="SEI_N">No</label>
 </div>
@@ -240,7 +240,7 @@
 </div>
 	
 <div id="Washout">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseWash(event)">Is Tumor Washout Present?</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseWash(event)">Is Tumor Washout Present?</span></h2>
 	<p>(i.e., Arterial-Delayed Enhancement Ratio (ADER) &ge; 1.5)</p>
 	<input type="radio" name="Wash" id="Wash_Y" value="Yes"><label class="R_Lbl" for="Wash_Y">Yes, ADER &ge; 1.5</label>
 	<input type="radio" name="Wash" id="Wash_N" value="No"><label class="R_Lbl" for="Wash_N">No, ADER &lt; 1.5</label>
@@ -266,7 +266,7 @@
 </div>
 
 <div id="MR_Stage">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseStage(event)">MRI Staging</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseStage(event)">MRI Staging</span></h2>
 	<input type="radio" name="MR_St" id="Stage_T1a" value="T1a (&le; 4 cm)" checked="checked"><label class="R_Lbl" for="Stage_T1a">T1a (&le; 4 cm)</label>
 	<input type="radio" name="MR_St" id="Stage_T1b" value="T1b (&gt; 4 and &le; 7 cm)"><label class="R_Lbl" for="Stage_T1b">T1b (&gt; 4 and &le; 7 cm)</label>
 	<input type="radio" name="MR_St" id="Stage_T2" value="T2 (&gt; 7 cm)"><label class="R_Lbl" for="Stage_T2">T2 (&gt; 7 cm)</label>
@@ -275,14 +275,14 @@
 </div>
 
 <div id="RV_Anat">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseRVA(event)">Renal Vein Anatomy</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseRVA(event)">Renal Vein Anatomy</span></h2>
 	<input type="radio" name="RV_Anat" id="RVA_Norm" value="Usual" checked="checked"><label class="R_Lbl" for="RVA_Norm">Usual</label>
 	<input type="radio" name="RV_Anat" id="RVA_Circ" value="Circumaortic"><label class="R_Lbl" for="RVA_Circ">Circumaortic</label>
 	<input type="radio" name="RV_Anat" id="RVA_Retr" value="Retroaortic"><label class="R_Lbl" for="RVA_Retr">Retroaortic</label>
 </div>	
 
 <div id="RV_Thr">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseRVT(event)">Renal Vein Thrombus</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseRVT(event)">Renal Vein Thrombus</span></h2>
 	<input type="radio" name="RV_Thr" id="RVT_No" value="Absent" checked="checked" onclick="CheckStage()"><label class="R_Lbl" for="RVT_No">Absent</label>
 	<input type="radio" name="RV_Thr" id="RVT_Intra" value="Intra-Renal" onclick="CheckStage()"><label class="R_Lbl" for="RVT_Intra">Intra-Renal</label>
 	<input type="radio" name="RV_Thr" id="RVT_Extra" value="Extra-Renal Renal Vein (Level 0)" onclick="CheckStage()"><label class="R_Lbl" for="RVT_Extra">Extra-Renal Renal Vein (Level 0)</label>
@@ -293,7 +293,7 @@
 </div>
 	
 <div id="RA_Anat">
-	<h2 tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseRAA(event)">Renal Artery Anatomy</h2>
+	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseRAA(event)">Renal Artery Anatomy</span></h2>
 	<input type="radio" name="RA_Anat" id="RA_Norm" value="Single Artery" checked="checked"><label class="R_Lbl" for="RA_Norm">Single Artery</label>
 	<input type="radio" name="RA_Anat" id="RA_Ac_Upr" value="Accessory Artery for Upper Pole"><label class="R_Lbl" for="RA_Ac_Upr">Accessory Artery for Upper Pole</label>
 	<input type="radio" name="RA_Anat" id="RA_Ac_Lwr" value="Accessory Artery for Lower Pole"><label class="R_Lbl" for="RA_Ac_Lwr">Accessory Artery for Lower Pole</label>

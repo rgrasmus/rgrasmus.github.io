@@ -74,32 +74,12 @@ header {
 h2 {
 	font-size: 1.75;
 }
-h2:focus {
+span:focus {
 	color: #F79B19;
 	outline: none;
 }
 
-h3:focus {
-	color: #F79B19;
-	outline: none;
-}
-
-p:focus {
-	color: #F79B19;
-	outline: none;
-}
-
-body.dark_mode h2:focus {
-	color: #63e6be;
-	outline: none;
-}
-
-body.dark_mode h3:focus {
-	color: #63e6be;
-	outline: none;
-}
-
-body.dark_mode p:focus {
+body.dark_mode span:focus {
 	color: #63e6be;
 	outline: none;
 }

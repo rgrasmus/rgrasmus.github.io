@@ -74,6 +74,35 @@ header {
 h2 {
 	font-size: 1.75;
 }
+h2:focus {
+	color: #F79B19;
+	outline: none;
+}
+
+h3:focus {
+	color: #F79B19;
+	outline: none;
+}
+
+p:focus {
+	color: #F79B19;
+	outline: none;
+}
+
+body.dark_mode h2:focus {
+	color: #63e6be;
+	outline: none;
+}
+
+body.dark_mode h3:focus {
+	color: #63e6be;
+	outline: none;
+}
+
+body.dark_mode p:focus {
+	color: #63e6be;
+	outline: none;
+}
 
 #body {
 	padding-bottom: 100px;
@@ -115,7 +144,12 @@ input[type="radio"] {
 }
 
 .Dim_Inp:focus {
-	border: 3px solid black;
+	border: 3px solid #F79B19;
+	outline: none;
+}
+
+body.dark_mode .Dim_Inp:focus {
+	border: 3px solid #63e6be;
 	outline: none;
 }
 input[type="date"] {
@@ -197,10 +231,24 @@ footer div {
 }
 
 .calculator input:focus {
-	border: 3px solid black;
+	border: 3px solid #F79B19;
 	outline: none;
 }
 
+body.dark_mode .calculator input:focus {
+	border: 3px solid #63e6be;
+	outline: none;
+}
+
+.button:focus {
+	outline: 3px solid #F79B19;
+	border: none;
+}
+
+body.dark_mode .button:focus {
+	outline: 3px solid #63e6be;
+	border: none;
+}
 .button {
 	background-color: lightgray;
 	border: none;

@@ -91,6 +91,27 @@ function CheckStage() {
 	}
 }
 
+function ChoosePrior(event) {
+	var key = event.key;
+	var Yes_Btn = document.getElementById("Prior_Avl_Y");
+	var No_Btn = document.getElementById("Prior_Avl_N");
+	switch (key) {
+		case "1":
+		case "y":
+			Yes_Btn.checked = true;
+			No_Btn.checked = false;
+			CheckPrior(1);
+			break;
+		case "2":
+		case "n":
+			Yes_Btn.checked = false;
+			No_Btn.checked = true;
+			CheckPrior(2);
+			break;
+	}
+
+}
+
 function CheckPrior(NewVal) {
 	var PriorDiv = document.getElementById("Prior_Info");
 	var PriorDate = document.getElementById("Prior_Date");
@@ -109,6 +130,558 @@ function CheckPrior(NewVal) {
 	}
 }
 
+function ChooseLat(event) {
+	var key = event.key;
+	var L_Btn = document.getElementById("Loc_Left");
+	var R_Btn = document.getElementById("Loc_Right");
+
+	switch (key) {
+		case "1":
+		case "l":
+			L_Btn.checked = true;
+			R_Btn.checked = false;
+			break;
+		case "2":
+		case "r":
+			L_Btn.checked = false;
+			R_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseCC(event) {
+	var key = event.key;
+	var Upr_Btn = document.getElementById("Loc_CC_Upr");
+	var Mid_Btn = document.getElementById("Loc_CC_Mid");
+	var Lwr_Btn = document.getElementById("Loc_CC_Lwr");
+
+	switch (key) {
+		case "1":
+			Upr_Btn.checked = true;
+			Mid_Btn.checked = false;
+			Lwr_Btn.checked = false;
+			break;
+		case "2":
+			Upr_Btn.checked = false;
+			Mid_Btn.checked = true;
+			Lwr_Btn.checked = false;
+			break;
+		case "3":
+			Upr_Btn.checked = false;
+			Mid_Btn.checked = false;
+			Lwr_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseLL(event) {
+	var key = event.key;
+	var Med_Btn = document.getElementById("Loc_LL_Med");
+	var Mid_Btn = document.getElementById("Loc_LL_Mid");
+	var Lat_Btn = document.getElementById("Loc_LL_Lat");
+
+	switch (key) {
+		case "1":
+			Med_Btn.checked = true;
+			Mid_Btn.checked = false;
+			Lat_Btn.checked = false;
+			break;
+		case "2":
+			Med_Btn.checked = false;
+			Mid_Btn.checked = true;
+			Lat_Btn.checked = false;
+			break;
+		case "3":
+			Med_Btn.checked = false;
+			Mid_Btn.checked = false;
+			Lat_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseAP(event) {
+	var key = event.key;
+	var Ant_Btn = document.getElementById("Loc_AP_Ant");
+	var Mid_Btn = document.getElementById("Loc_AP_Mid");
+	var Pos_Btn = document.getElementById("Loc_AP_Pos");
+
+	switch (key) {
+		case "1":
+			Ant_Btn.checked = true;
+			Mid_Btn.checked = false;
+			Pos_Btn.checked = false;
+			break;
+		case "2":
+			Ant_Btn.checked = false;
+			Mid_Btn.checked = true;
+			Pos_Btn.checked = false;
+			break;
+		case "3":
+			Ant_Btn.checked = false;
+			Mid_Btn.checked = false;
+			Pos_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseDepth(event) {
+	var key = event.key;
+	var Par_Btn = document.getElementById("Depth_Par");
+	var Int_Btn = document.getElementById("Depth_Int");
+	var Hil_Btn = document.getElementById("Depth_Hil");
+
+	switch (key) {
+		case "1":
+			Par_Btn.checked = true;
+			Int_Btn.checked = false;
+			Hil_Btn.checked = false;
+			break;
+		case "2":
+			Par_Btn.checked = false;
+			Int_Btn.checked = true;
+			Hil_Btn.checked = false;
+			break;
+		case "3":
+			Par_Btn.checked = false;
+			Int_Btn.checked = false;
+			Hil_Btn.checked = true;
+			break;
+	}
+	CheckStage();
+}
+
+function ChooseT2Int(event) {
+	var key = event.key;
+	var Hyper_Btn = document.getElementById("T2_Hyper");
+	var Iso_Btn = document.getElementById("T2_Iso");
+	var Hypo_Btn = document.getElementById("T2_Hypo");
+
+	switch (key) {
+		case "1":
+			Hyper_Btn.checked = true;
+			Iso_Btn.checked = false;
+			Hypo_Btn.checked = false;
+			break;
+		case "2":
+			Hyper_Btn.checked = false;
+			Iso_Btn.checked = true;
+			Hypo_Btn.checked = false;
+			break;
+		case "3":
+			Hyper_Btn.checked = false;
+			Iso_Btn.checked = false;
+			Hypo_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseT2Ptr(event) {
+	var key = event.key;
+	var Homo_Btn = document.getElementById("T2_Homo");
+	var SlHet_Btn = document.getElementById("T2_SlHet");
+	var Het_Btn = document.getElementById("T2_Het");
+
+	switch (key) {
+		case "1":
+			Homo_Btn.checked = true;
+			SlHet_Btn.checked = false;
+			Het_Btn.checked = false;
+			break;
+		case "2":
+			Homo_Btn.checked = false;
+			SlHet_Btn.checked = true;
+			Het_Btn.checked = false;
+			break;
+		case "3":
+			Homo_Btn.checked = false;
+			SlHet_Btn.checked = false;
+			Het_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseCME(event) {
+	var key = event.key;
+	var Int_Btn = document.getElementById("CME_Int");
+	var Mod_Btn = document.getElementById("CME_Mod");
+	var Mld_Btn = document.getElementById("CME_Mld");
+
+	switch (key) {
+		case "1":
+			Int_Btn.checked = true;
+			Mod_Btn.checked = false;
+			Mld_Btn.checked = false;
+			break;
+		case "2":
+			Int_Btn.checked = false;
+			Mod_Btn.checked = true;
+			Mld_Btn.checked = false;
+			break;
+		case "3":
+			Int_Btn.checked = false;
+			Mod_Btn.checked = false;
+			Mld_Btn.checked = true;
+			break;
+		case "4":
+		case "h":
+			Int_Btn.checked = false;
+			Mod_Btn.checked = false;
+			Mld_Btn.checked = false;
+			CM_OpenCalc();
+	}
+}
+
+function ChooseCMPtr(event) {
+	var key = event.key;
+	var Homo_Btn = document.getElementById("CM_Homo");
+	var SlHet_Btn = document.getElementById("CM_SlHet");
+	var Het_Btn = document.getElementById("CM_Het");
+
+	switch (key) {
+		case "1":
+			Homo_Btn.checked = true;
+			SlHet_Btn.checked = false;
+			Het_Btn.checked = false;
+			break;
+		case "2":
+			Homo_Btn.checked = false;
+			SlHet_Btn.checked = true;
+			Het_Btn.checked = false;
+			break;
+		case "3":
+			Homo_Btn.checked = false;
+			SlHet_Btn.checked = false;
+			Het_Btn.checked = true;
+			break;
+	}
+}
+
+
+function ChooseT1CS(event) {
+	var key = event.key;
+	var Macro_Btn = document.getElementById("T1_Macro");
+	var Micro_Btn = document.getElementById("T1_Micro");
+	var NoFat_Btn = document.getElementById("T1_NoFat");
+
+	switch (key) {
+		case "1":
+			Macro_Btn.checked = true;
+			Micro_Btn.checked = false;
+			NoFat_Btn.checked = false;
+			T1CS();
+			break;
+		case "2":
+			Macro_Btn.checked = false;
+			Micro_Btn.checked = true;
+			NoFat_Btn.checked = false;
+			break;
+		case "3":
+			Macro_Btn.checked = false;
+			Micro_Btn.checked = false;
+			NoFat_Btn.checked = true;
+			break;
+		case "4":
+		case "h":
+			Macro_Btn.checked = false;
+			Micro_Btn.checked = false;
+			NoFat_Btn.checked = false;
+			T1_OpenCalc();
+	}
+}
+
+function ChooseDWI(event) {
+	var key = event.key;
+	var Hyper_Btn = document.getElementById("DWI_Hyper");
+	var Iso_Btn = document.getElementById("DWI_Iso");
+	var Hypo_Btn = document.getElementById("DWI_Hypo");
+
+	switch (key) {
+		case "1":
+			Hyper_Btn.checked = true;
+			Iso_Btn.checked = false;
+			Hypo_Btn.checked = false;
+			break;
+		case "2":
+			Hyper_Btn.checked = false;
+			Iso_Btn.checked = true;
+			Hypo_Btn.checked = false;
+			break;
+		case "3":
+			Hyper_Btn.checked = false;
+			Iso_Btn.checked = false;
+			Hypo_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseADC(event) {
+	var key = event.key;
+	var Hyper_Btn = document.getElementById("ADC_Hyper");
+	var Iso_Btn = document.getElementById("ADC_Iso");
+	var Hypo_Btn = document.getElementById("ADC_Hypo");
+
+	switch (key) {
+		case "1":
+			Hyper_Btn.checked = true;
+			Iso_Btn.checked = false;
+			Hypo_Btn.checked = false;
+			break;
+		case "2":
+			Hyper_Btn.checked = false;
+			Iso_Btn.checked = true;
+			Hypo_Btn.checked = false;
+			break;
+		case "3":
+			Hyper_Btn.checked = false;
+			Iso_Btn.checked = false;
+			Hypo_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseSEI(event) {
+	var key = event.key;
+	var Yes_Btn = document.getElementById("SEI_Y");
+	var No_Btn = document.getElementById("SEI_N");
+	switch (key) {
+		case "1":
+		case "y":
+			Yes_Btn.checked = true;
+			No_Btn.checked = false;
+			break;
+		case "2":
+		case "n":
+			Yes_Btn.checked = false;
+			No_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseWash(event) {
+	var key = event.key;
+	var Yes_Btn = document.getElementById("Wash_Y");
+	var No_Btn = document.getElementById("Wash_N");
+	switch (key) {
+		case "1":
+		case "y":
+			Yes_Btn.checked = true;
+			No_Btn.checked = false;
+			break;
+		case "2":
+		case "n":
+			Yes_Btn.checked = false;
+			No_Btn.checked = true;
+			break;
+		case "3":
+		case "h":
+			Yes_Btn.checked = false;
+			No_Btn.checked = false;
+			ADER_OpenCalc();
+			break;
+	}
+}
+
+function ChooseStage(event) {
+	var key = event.key;
+	var T1a_Btn = document.getElementById("Stage_T1a");
+	var T1b_Btn = document.getElementById("Stage_T1b");
+	var T2_Btn = document.getElementById("Stage_T2");
+	var T3_Btn = document.getElementById("Stage_T3");
+	var T4_Btn = document.getElementById("Stage_T4");
+
+	switch (key) {
+		case "1":
+			if (!T1a_Btn.disabled) {
+				T1a_Btn.checked = true;
+				T1b_Btn.checked = false;
+				T2_Btn.checked = false;
+				T3_Btn.checked = false;
+				T4_Btn.checked = false;
+			}
+			break;
+		case "2":
+			if (!T1b_Btn.disabled) {
+				T1a_Btn.checked = false;
+				T1b_Btn.checked = true;
+				T2_Btn.checked = false;
+				T3_Btn.checked = false;
+				T4_Btn.checked = false;
+			}
+			break;
+		case "3":
+			if (!T2_Btn.disabled) {
+				T1a_Btn.checked = false;
+				T1b_Btn.checked = false;
+				T2_Btn.checked = true;
+				T3_Btn.checked = false;
+				T4_Btn.checked = false;
+			}
+			break;
+		case "4":
+			if (!T3_Btn.disabled) {
+				T1a_Btn.checked = false;
+				T1b_Btn.checked = false;
+				T2_Btn.checked = false;
+				T3_Btn.checked = true;
+				T4_Btn.checked = false;
+			}
+			break;
+		case "5":
+			if (!T4_Btn.disabled) {
+				T1a_Btn.checked = false;
+				T1b_Btn.checked = false;
+				T2_Btn.checked = false;
+				T3_Btn.checked = false;
+				T4_Btn.checked = true;
+			}
+			break;
+	}
+
+}
+
+function ChooseRVA(event) {
+	var key = event.key;
+	var Norm_Btn = document.getElementById("RVA_Norm");
+	var Circ_Btn = document.getElementById("RVA_Circ");
+	var Retr_Btn = document.getElementById("RVA_Retr");
+	switch (key) {
+		case "1":
+		case "n":
+			Norm_Btn.checked = true;
+			Circ_Btn.checked = false;
+			Retr_Btn.checked = false;
+			break;
+		case "2":
+		case "c":
+			Norm_Btn.checked = false;
+			Circ_Btn.checked = true;
+			Retr_Btn.checked = false;
+			break;
+		case "3":
+		case "r":
+			Norm_Btn.checked = false;
+			Circ_Btn.checked = false;
+			Retr_Btn.checked = true;
+			break;
+	}
+}
+
+function ChooseRVT(event) {
+	var key = event.key;
+	var No_Btn = document.getElementById("RVT_No");
+	var Intra_Btn = document.getElementById("RVT_Intra");
+	var Extra_Btn = document.getElementById("RVT_Extra");
+	var IVC1_Btn = document.getElementById("RVT_IVC_1");
+	var IVC2_Btn = document.getElementById("RVT_IVC_2");
+	var IVC3_Btn = document.getElementById("RVT_IVC_3");
+	var IVC4_Btn = document.getElementById("RVT_IVC_4");
+	switch (key) {
+		case "1":
+		case "n":
+			No_Btn.checked = true;
+			Intra_Btn.checked = false;
+			Extra_Btn.checked = false;
+			IVC1_Btn.checked = false;
+			IVC2_Btn.checked = false;
+			IVC3_Btn.checked = false;
+			IVC4_Btn.checked = false;
+			break;
+		case "2":
+			No_Btn.checked = false;
+			Intra_Btn.checked = true;
+			Extra_Btn.checked = false;
+			IVC1_Btn.checked = false;
+			IVC2_Btn.checked = false;
+			IVC3_Btn.checked = false;
+			IVC4_Btn.checked = false;
+			break;
+		case "3":
+			No_Btn.checked = false;
+			Intra_Btn.checked = false;
+			Extra_Btn.checked = true;
+			IVC1_Btn.checked = false;
+			IVC2_Btn.checked = false;
+			IVC3_Btn.checked = false;
+			IVC4_Btn.checked = false;
+			break;
+		case "4":
+			No_Btn.checked = false;
+			Intra_Btn.checked = false;
+			Extra_Btn.checked = false;
+			IVC1_Btn.checked = true;
+			IVC2_Btn.checked = false;
+			IVC3_Btn.checked = false;
+			IVC4_Btn.checked = false;
+			break;
+		case "5":
+			No_Btn.checked = false;
+			Intra_Btn.checked = false;
+			Extra_Btn.checked = false;
+			IVC1_Btn.checked = false;
+			IVC2_Btn.checked = true;
+			IVC3_Btn.checked = false;
+			IVC4_Btn.checked = false;
+			break;
+		case "6":
+			No_Btn.checked = false;
+			Intra_Btn.checked = false;
+			Extra_Btn.checked = false;
+			IVC1_Btn.checked = false;
+			IVC2_Btn.checked = false;
+			IVC3_Btn.checked = true;
+			IVC4_Btn.checked = false;
+			break;
+		case "7":
+			No_Btn.checked = false;
+			Intra_Btn.checked = false;
+			Extra_Btn.checked = false;
+			IVC1_Btn.checked = false;
+			IVC2_Btn.checked = false;
+			IVC3_Btn.checked = false;
+			IVC4_Btn.checked = true;
+			break;
+	}
+	CheckStage();
+}
+
+function ChooseRAA(event) {
+	var key = event.key;
+	var Norm_Btn = document.getElementById("RA_Norm");
+	var Upr_Btn = document.getElementById("RA_Ac_Upr");
+	var Lwr_Btn = document.getElementById("RA_Ac_Lwr");
+	var Both_Bth = document.getElementById("RA_Ac_Both")
+	switch (key) {
+		case "1":
+		case "n":
+			Norm_Btn.checked = true;
+			Upr_Btn.checked = false;
+			Lwr_Btn.checked = false;
+			Both_Btn.checked = false;
+			break;
+		case "2":
+		case "u":
+			Norm_Btn.checked = false;
+			Upr_Btn.checked = true;
+			Lwr_Btn.checked = false;
+			Both_Btn.checked = false;
+			break;
+		case "3":
+		case "l":
+			Norm_Btn.checked = false;
+			Upr_Btn.checked = false;
+			Lwr_Btn.checked = true;
+			Both_Btn.checked = false;
+			break;
+		case "4":
+		case "b":
+			Norm_Btn.checked = false;
+			Upr_Btn.checked = false;
+			Lwr_Btn.checked = false;
+			Both_Btn.checked = true;
+			break;
+	}
+}
+
 function T1CS() {
 	alert("A renal tumor with macroscopic fat is highly likely to be a classic angiomyolipoma (AML) and the ccLS algorithm does not apply to such tumors");
 }
@@ -116,12 +689,10 @@ function T1CS() {
 function CM_OpenCalc() {
 	var CM_CalcBtn = document.getElementById("Btn_CM_OpenCalc");
 	var CMCalcDiv = document.getElementById("CalcEnhance");
-	var Inp_T_Pre = document.getElementById("SI_Tumor_Pre");
 	
 	if (CMCalcDiv.style.display == "none") {
 		SelectBtn(CM_CalcBtn);
 		CMCalcDiv.style.display = "block";
-		Inp_T_Pre.focus();
 	} else {
 		UnselectBtn(CM_CalcBtn);
 		CMCalcDiv.style.display = "none";
@@ -143,9 +714,9 @@ function CM_ClearVars() {
 	Inp_C_Pre.value = '';
 	Inp_C_Art.value = '';
 	
-	CM_Tumor_Text.innerHTML = "NaN";
-	CM_Cortex_Text.innerHTML = "NaN";
-	TC_Ratio_Text.innerHTML = "NaN"
+	CM_Tumor_Text.innerHTML = "TBD";
+	CM_Cortex_Text.innerHTML = "TBD";
+	TC_Ratio_Text.innerHTML = "TBD"
 }
 
 function CM_RunCalc() {
@@ -198,12 +769,10 @@ function CM_ResetCalc() {
 function T1_OpenCalc() {
 	var T1_CalcBtn = document.getElementById("Btn_T1_OpenCalc");
 	var T1CalcDiv = document.getElementById("CalcT1");
-	var Inp_SI_IP = document.getElementById("SI_IP");
 	
 	if (T1CalcDiv.style.display == "none") {
 		SelectBtn(T1_CalcBtn);
 		T1CalcDiv.style.display = "block";
-		Inp_SI_IP.focus();
 	} else {
 		UnselectBtn(T1_CalcBtn);
 		T1CalcDiv.style.display = "none";
@@ -223,7 +792,7 @@ function T1_ClearVars() {
 	Inp_SI_OP.value = '';
 	Inp_OP_SD.value = '';
 
-	T1Dif_Text.innerHTML = "NaN";
+	T1Dif_Text.innerHTML = "TBD";
 }
 
 function T1_RunCalc() {
@@ -259,13 +828,11 @@ function T1_ResetCalc() {
 
 function ADER_OpenCalc() {
 	var ADER_CalcBtn = document.getElementById("Btn_ADER_OpenCalc");
-	var Inp_ADER_Pre_SI = document.getElementById("ADER_Pre_SI");
 	var ADERCalcDiv = document.getElementById("CalcADER");
 	
 	if (ADERCalcDiv.style.display == "none") {
 		SelectBtn(ADER_CalcBtn);
 		ADERCalcDiv.style.display = "block";
-		Inp_ADER_Pre_SI.focus();
 	} else {
 		UnselectBtn(ADER_CalcBtn);
 		ADERCalcDiv.style.display = "none";
@@ -282,7 +849,7 @@ function ADER_ClearVars() {
 	ADER_Pre_SI.value = '';
 	ADER_CM_SI.value = '';
 	ADER_NG_SI.value = '';
-	ADER_Text.innerHTML = "NaN";
+	ADER_Text.innerHTML = "TBD";
 }
 
 function ADER_RunCalc() {
@@ -394,7 +961,8 @@ function Generate_Report() {
 	document.getElementById('RAA_Char').innerHTML = RAA_Char;
 	
 	Run_ccLS();
-	
+	document.getElementById("Btn_CopyFind").focus();
+	document.getElementById("Findings").scrollIntoView({block: 'center'});
 }
 function set_ccLS(val, fpAML, Onco, Imp) {
 	document.getElementById('ccLS_Val').innerHTML = val;

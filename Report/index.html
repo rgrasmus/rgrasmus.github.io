@@ -26,11 +26,11 @@
 		
 		<h3>
 			A standardized reporting template that applies the clear cell likelihood score (ccLS) algorithm. <br>
-			To see a visual flowchart of the ccLS algorithm go <a href="https://www.utsouthwestern.edu/labs/pedrosa/assets/pedrosa-0720-renal1.jpg">here</a><br>
+			To see a visual flowchart of the ccLS algorithm go <a tabindex="-1" href="https://www.utsouthwestern.edu/labs/pedrosa/assets/pedrosa-0720-renal1.jpg">here</a><br>
 			For non-commercial and non-clinical purposes only. Use at your own risk.
 		</h3>
 		This algorithm is designed for solid (&gt;25% enhancing component) renal masses without macroscopic (bulk) fat. <br>
-		Please use the <a href="https://bosniak-calculator.herokuapp.com/">Bosniak classification</a> for cystic (non-solid) masses.
+		Please use the <a tabindex="-1" href="https://bosniak-calculator.herokuapp.com/">Bosniak classification</a> for cystic (non-solid) masses.
 		<div>
 			<i id="Dark_Toggle" class="fas fa-moon dark_toggle" onClick="Toggle_Dark()"></i>
 		</div>
@@ -39,7 +39,7 @@
 
 <div id="Size">
 	<h2>Size of the mass</h2>
-	<input type="number" step="0.1" min="0" class="Dim_Inp" id="AP_sz" autofocus oninput="CheckStage()"> (AP) x 
+	<input type="number" step="0.1" min="0" class="Dim_Inp" id="AP_sz" oninput="CheckStage()"> (AP) x 
 	<input type="number" step="0.1" min="0" class="Dim_Inp" id="LL_sz" oninput="CheckStage()"> (LL) x 
 	<input type="number" step="0.1" min="0" class="Dim_Inp" id="CC_sz" oninput="CheckStage()"> (CC) cm
 </div>

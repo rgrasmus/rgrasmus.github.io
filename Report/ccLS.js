@@ -90,6 +90,74 @@ function CheckStage() {
 	}
 }
 
+function CheckccLS() {
+	var T2_SI = document.querySelector('input[name=T2_Int]:checked')?.value;
+	var CMEnh = document.querySelector('input[name=CME]:checked')?.value;
+	var T1_Fat = document.querySelector('input[name=T1fat]:checked')?.value;
+
+	var T2_Ptr_Exc = document.getElementById("T2_Ptr_Exclame");
+	var CME_Ptr_Exc = document.getElementById("CME_Ptr_Exclame");
+	var T1CS_Exc = document.getElementById("T1CS_Exclame");
+	var DWI_Exc = document.getElementById("DWI_Exclame");
+	var ADC_Exc = document.getElementById("ADC_Exclame");
+	var SEI_Exc = document.getElementById("SEI_Exclame");
+	var ADER_Exc = document.getElementById("ADER_Exclame");
+	
+	T2_Ptr_Exc.style.display = "none";
+	CME_Ptr_Exc.style.display = "none";
+	T1CS_Exc.style.display = "none";
+	DWI_Exc.style.display = "none";
+	ADC_Exc.style.display = "none";
+	SEI_Exc.style.display = "none";
+
+	console.log(T2_SI + " , " + CMEnh + " , " + T1_Fat);
+	
+	switch (T2_SI) {
+		case "Hyperintense":
+			switch (CMEnh) {
+				case "Intense":
+					T1CS_Exc.style.display = "inline";
+					if (T1_Fat == "No Fat") SEI_Exc.style.display = "inline";
+					break;
+				case "Moderate":
+					T1CS_Exc.style.display = "inline";
+					SEI_Exc.style.display = "inline";
+					break;
+			}
+			break;
+		case "Isointense":
+			T1CS_Exc.style.display = "inline";
+			switch (CMEnh) {
+				case "Intense":
+					if (T1_Fat == "No Fat") SEI_Exc.style.display = "inline";
+					break;
+				case "Moderate":
+					SEI_Exc.style.display = "inline";
+					break;
+				case "Mild":
+					DWI_Exc.style.display = "inline";
+					ADC_Exc.style.display = "inline";
+					break;
+			}
+			break;
+		case "Hypointense":
+			switch (CMEnh) {
+				case "Intense":
+				ADER_Exc.style.display = "inline";
+				DWI_Exc.style.display = "inline";
+				ADC_Exc.style.display = "inline";
+				T2_Ptr_Exc.style.display = "inline";
+				CME_Ptr_Exc.style.display = "inline";
+				break;
+			case "Mild":
+				T1CS_Exc.style.display = "inline";
+				break;
+			}
+			break;
+	}
+
+}
+
 function ChoosePrior(event) {
 	var key = event.key;
 	var Yes_Btn = document.getElementById("Prior_Avl_Y");
@@ -246,7 +314,6 @@ function ChooseDepth(event) {
 			Hil_Btn.checked = true;
 			break;
 	}
-	CheckStage();
 }
 
 function ChooseT2Int(event) {
@@ -272,6 +339,7 @@ function ChooseT2Int(event) {
 			Hypo_Btn.checked = true;
 			break;
 	}
+	CheckccLS();
 }
 
 function ChooseT2Ptr(event) {
@@ -328,6 +396,7 @@ function ChooseCME(event) {
 			Mld_Btn.checked = false;
 			CM_OpenCalc();
 	}
+	CheckccLS();
 }
 
 function ChooseCMPtr(event) {
@@ -386,6 +455,7 @@ function ChooseT1CS(event) {
 			NoFat_Btn.checked = false;
 			T1_OpenCalc();
 	}
+	CheckccLS();
 }
 
 function ChooseDWI(event) {
@@ -683,6 +753,7 @@ function ChooseRAA(event) {
 
 function T1CS() {
 	alert("A renal tumor with macroscopic fat is highly likely to be a classic angiomyolipoma (AML) and the ccLS algorithm does not apply to such tumors");
+	CheckccLS();
 }
 
 function CM_OpenCalc() {

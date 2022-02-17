@@ -26,11 +26,12 @@
 		
 		<h3>
 			A standardized reporting template that applies the clear cell likelihood score (ccLS) algorithm. <br>
-			To see a visual flowchart of the ccLS algorithm go <a tabindex="-1" href="https://www.utsouthwestern.edu/labs/pedrosa/assets/pedrosa-0720-renal1.jpg">here</a><br>
-			For non-commercial and non-clinical purposes only. Use at your own risk.
+			To see a visual flowchart of the ccLS algorithm go <a href="https://www.utsouthwestern.edu/labs/pedrosa/assets/pedrosa-0720-renal1.jpg">here</a><br>
+			For non-commercial and non-clinical purposes only. Use at your own risk.<br><br>
+			Fields required to generate a clear cell likelihood score are denoted with the symbol <span class="exclame"><i class="fas fa-exclamation-circle"></i></span> which dynamically appears/disappears based upon inputs.
 		</h3>
 		This algorithm is designed for solid (&gt;25% enhancing component) renal masses without macroscopic (bulk) fat. <br>
-		Please use the <a tabindex="-1" href="https://bosniak-calculator.herokuapp.com/">Bosniak classification</a> for cystic (non-solid) masses.
+		Please use the <a href="https://bosniak-calculator.herokuapp.com/">Bosniak classification</a> for cystic (non-solid) masses.
 		<div>
 			<i id="Dark_Toggle" class="fas fa-moon dark_toggle" onClick="Toggle_Dark()"></i>
 		</div>
@@ -39,7 +40,7 @@
 
 <div id="Size">
 	<h2>Size of the mass</h2>
-	<input type="number" step="0.1" min="0" class="Dim_Inp" id="AP_sz" oninput="CheckStage()"> (AP) x 
+	<input type="number" step="0.1" min="0" class="Dim_Inp" id="AP_sz" autofocus oninput="CheckStage()"> (AP) x 
 	<input type="number" step="0.1" min="0" class="Dim_Inp" id="LL_sz" oninput="CheckStage()"> (LL) x 
 	<input type="number" step="0.1" min="0" class="Dim_Inp" id="CC_sz" oninput="CheckStage()"> (CC) cm
 </div>
@@ -84,12 +85,18 @@
 <div id="T2SI" >
 	<h2>T2 Signal Intensity &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#T2SI_modal"></i></h2>
 	<p>Assess T2 signal <em>ONLY</em> in enhancing component of tumor </p> 
-	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Int(event)">Intensity Relative to Background Renal Cortex</span></h3>
-	<input type="radio" name="T2_Int" id="T2_Hyper" value="Hyperintense"><label class="R_Lbl" for="T2_Hyper">Hyperintense</label>
-	<input type="radio" name="T2_Int" id="T2_Iso" value="Isointense"><label class="R_Lbl" for="T2_Iso">Isointense</label>
-	<input type="radio" name="T2_Int" id="T2_Hypo" value="Hypointense"><label class="R_Lbl" for="T2_Hypo">Hypointense</label>
+	<h3>
+		<span id="T2_Exclame" class="exclame"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Int(event)">Intensity Relative to Background Renal Cortex</span>
+	</h3>
+	<input type="radio" name="T2_Int" id="T2_Hyper" value="Hyperintense" onchange="CheckccLS()"><label class="R_Lbl" for="T2_Hyper">Hyperintense</label>
+	<input type="radio" name="T2_Int" id="T2_Iso" value="Isointense" onchange="CheckccLS()"><label class="R_Lbl" for="T2_Iso">Isointense</label>
+	<input type="radio" name="T2_Int" id="T2_Hypo" value="Hypointense" onchange="CheckccLS()"><label class="R_Lbl" for="T2_Hypo">Hypointense</label>
 	
-	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Ptr(event)">Pattern of T2 Signal</span></h3>
+	<h3>
+		<span id="T2_Ptr_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT2Ptr(event)">Pattern of T2 Signal</span>
+	</h3>
 	<input type="radio" name="T2_Ptr" id="T2_Homo" value="Homogeneous"><label class="R_Lbl" for="T2_Homo">Homogeneous</label>
 	<input type="radio" name="T2_Ptr" id="T2_SlHet" value="Slightly Heterogeneous"><label class="R_Lbl" for="T2_SlHet">Slightly Heterogeneous</label>
 	<input type="radio" name="T2_Ptr" id="T2_Het" value="Heterogeneous"><label class="R_Lbl" for="T2_Het">Heterogeneous</label>
@@ -120,10 +127,13 @@
 <div id="CMEnhance">
 	<h2>Enhancement Characteristics at Corticomedullary (CM) Phase &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#CME_modal"></i></h2>
 	<p>Assess area with the <em>HIGHEST</em> enhancement on CM phase </p>
-	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCME(event)">Degree of Enhancement Relative to Background Renal Cortex</span></h3>
-	<input type="radio" name="CME" id="CME_Int" value="Intense"><label class="R_Lbl" for="CME_Int">Intense (&gt; 75%)</label>
-	<input type="radio" name="CME" id="CME_Mod" value="Moderate"><label class="R_Lbl" for="CME_Mod">Moderate (40%-75%)</label>
-	<input type="radio" name="CME" id="CME_Mld" value="Mild"><label class="R_Lbl" for="CME_Mld">Mild (&lt; 40%)</label>
+	<h3>
+		<span id="CME_Exclame" class="exclame"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCME(event)">Degree of Enhancement Relative to Background Renal Cortex</span>
+	</h3>
+	<input type="radio" name="CME" id="CME_Int" value="Intense" onchange="CheckccLS()"><label class="R_Lbl" for="CME_Int">Intense (&gt; 75%)</label>
+	<input type="radio" name="CME" id="CME_Mod" value="Moderate" onchange="CheckccLS()"><label class="R_Lbl" for="CME_Mod">Moderate (40%-75%)</label>
+	<input type="radio" name="CME" id="CME_Mld" value="Mild" onchange="CheckccLS()"><label class="R_Lbl" for="CME_Mld">Mild (&lt; 40%)</label>
 	
 	<button id="Btn_CM_OpenCalc" class="button" onclick="CM_OpenCalc()" tabindex="-1">Help Me Calculate</button>
 	
@@ -151,7 +161,10 @@
 			<h4>Tumor-Cortex Ratio: <span id="TC_Ratio">TBD</span>%</h4>
 		</div>
 	</div>
-	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCMPtr(event)">Pattern of Enhancement</span></h3>
+	<h3>
+		<span id="CME_Ptr_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCMPtr(event)">Pattern of Enhancement</span>
+	</h3>
 	<input type="radio" name="CM_Ptr" id="CM_Homo" value="Homogeneous"><label class="R_Lbl" for="CM_Homo">Homogeneous</label>
 	<input type="radio" name="CM_Ptr" id="CM_SlHet" value="Slightly Heterogeneous"><label class="R_Lbl" for="CM_SlHet">Slightly Heterogeneous</label>
 	<input type="radio" name="CM_Ptr" id="CM_Het" value="Heterogeneous"><label class="R_Lbl" for="CM_Het">Heterogeneous</label>
@@ -177,10 +190,13 @@
 </div>
 	
 <div id="T1CS">
-	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT1CS(event)">T1 Chemical Shift</span></h2>
-	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat"><label class="R_Lbl" for="T1_Macro" onClick="T1CS()">Macroscopic Fat</label>
-	<input type="radio" name="T1fat" id="T1_Micro" value="Microscopic Fat"><label class="R_Lbl" for="T1_Micro">Microscopic Fat</label>
-	<input type="radio" name="T1fat" id="T1_NoFat" value="No Fat"><label class="R_Lbl" for="T1_NoFat">No Fat</label>
+	<h2>
+		<span id="T1CS_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseT1CS(event)">T1 Chemical Shift</span>
+	</h2>
+	<input type="radio" name="T1fat" id="T1_Macro" value="Macroscopic Fat" onchange="T1CS()"><label class="R_Lbl" for="T1_Macro">Macroscopic Fat</label>
+	<input type="radio" name="T1fat" id="T1_Micro" value="Microscopic Fat" onchange="CheckccLS()"><label class="R_Lbl" for="T1_Micro">Microscopic Fat</label>
+	<input type="radio" name="T1fat" id="T1_NoFat" value="No Fat" onchange="CheckccLS()"><label class="R_Lbl" for="T1_NoFat">No Fat</label>
 	<button id="Btn_T1_OpenCalc" class="button" onclick="T1_OpenCalc()" tabindex="-1">Help Me Calculate</button>
 	<div id="CalcT1" class="calculator" style="display: none">
 		<h4>In-Phase Imaging</h4>
@@ -210,19 +226,29 @@
 <div id="DWI">
 	<h2>Diffusion Weighted Imaging (DWI) Characteristics</h2>
 	<p>Assess on high b-value DWI sequence (i.e. 800 sec/mm<sup>2</sup>)</p>
-	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseDWI(event)">DWI Signal Relative to Background Renal Cortex</span></h3>
+	<h3>
+		<span id="DWI_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseDWI(event)">DWI Signal Relative to Background Renal Cortex</span>
+	</h3>
 	<input type="radio" name="DWI" id="DWI_Hyper" value="Hyperintense"><label class="R_Lbl" for="DWI_Hyper">Hyperintense</label>
 	<input type="radio" name="DWI" id="DWI_Iso" value="Isointense"><label class="R_Lbl" for="DWI_Iso">Isointense</label>
 	<input type="radio" name="DWI" id="DWI_Hypo" value="Hypointense"><label class="R_Lbl" for="DWI_Hypo">Hypointense</label>
 	
-	<h3><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseADC(event)">Apparent Diffusion Component (ADC) Map Signal Relative to Background Renal Cortex</span></h3>
+	<h3>
+		<span id="ADC_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseADC(event)">Apparent Diffusion Component (ADC) Map Signal Relative to Background Renal Cortex</span>
+	</h3>
 	<input type="radio" name="ADC" id="ADC_Hyper" value="Hyperintense"><label class="R_Lbl" for="ADC_Hyper">Hyperintense</label>
 	<input type="radio" name="ADC" id="ADC_Iso" value="Isointense"><label class="R_Lbl" for="ADC_Iso">Isointense</label>
 	<input type="radio" name="ADC" id="ADC_Hypo" value="Hypointense"><label class="R_Lbl" for="ADC_Hypo">Hypointense</label>
 </div>	
 
 <div id="SEI">
-	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseSEI(event)">Is Segmental Enhancement Inversion (SEI) Present? &nbsp;</span><i class="fas fa-info-circle help_icon openmodal" href="#SEI_modal"></i></h2>
+	<h2>
+		<span id="SEI_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseSEI(event)">Is Segmental Enhancement Inversion (SEI) Present? &nbsp;</span>
+		<i class="fas fa-info-circle help_icon openmodal" href="#SEI_modal"></i>
+	</h2>
 	<input type="radio" name="SEI" id="SEI_Y" value="Yes"><label class="R_Lbl" for="SEI_Y">Yes</label>
 	<input type="radio" name="SEI" id="SEI_N" value="No"><label class="R_Lbl" for="SEI_N">No</label>
 </div>
@@ -248,7 +274,10 @@
 </div>
 	
 <div id="Washout">
-	<h2><span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseWash(event)">Is Tumor Washout Present?</span></h2>
+	<h2>
+		<span id="ADER_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
+		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseWash(event)">Is Tumor Washout Present?</span>
+	</h2>
 	<p>(i.e., Arterial-Delayed Enhancement Ratio (ADER) &ge; 1.5)</p>
 	<input type="radio" name="Wash" id="Wash_Y" value="Yes"><label class="R_Lbl" for="Wash_Y">Yes, ADER &ge; 1.5</label>
 	<input type="radio" name="Wash" id="Wash_N" value="No"><label class="R_Lbl" for="Wash_N">No, ADER &lt; 1.5</label>

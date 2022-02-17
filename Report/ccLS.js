@@ -20,7 +20,6 @@ var spans = document.getElementsByClassName("close");
 for (var i = 0; i < icn.length; i++) {
 	icn[i].onclick = function(e) {
 		e.preventDefault();
-		console.log("hi");
 		modal = document.querySelector(e.target.getAttribute("href"));
 		modal.style.display = "block";
 	}
@@ -109,8 +108,6 @@ function CheckccLS() {
 	DWI_Exc.style.display = "none";
 	ADC_Exc.style.display = "none";
 	SEI_Exc.style.display = "none";
-
-	console.log(T2_SI + " , " + CMEnh + " , " + T1_Fat);
 	
 	switch (T2_SI) {
 		case "Hyperintense":

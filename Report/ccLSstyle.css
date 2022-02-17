@@ -34,6 +34,10 @@ body.dark_mode .Report_Text {
 	background-color: #243B53
 }
 
+body.dark_mode .exclame {
+	color: #F79B19;
+}
+
 div.anim {
 	animation: shrink_grow 0.4s;
 	/* When the animation is finished, start again */
@@ -97,6 +101,10 @@ input[type="radio"] {
 	display: none;
 	cursor: pointer;
 
+}
+
+.exclame {
+	color: #551A8B;
 }
 
 .R_Lbl {

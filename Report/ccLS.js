@@ -822,6 +822,7 @@ function CM_RunCalc() {
 	} else {
 		Int_CME.checked = true;
 	}
+	CheckccLS();
 }
 
 function CM_ResetCalc() {
@@ -884,6 +885,7 @@ function T1_RunCalc() {
 		NoFat.checked = true;
 		T1Dif_Text.innerHTML = MicFatPresent.toFixed(1);
 	}
+	CheckccLS();
 }
 
 function T1_ResetCalc() {

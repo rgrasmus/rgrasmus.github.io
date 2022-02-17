@@ -54,7 +54,6 @@ function Toggle_Dark() {
 
 function CheckStage() {
 	var MaxSize = RunGetSize();
-	var Depth = document.querySelector('input[name=Depth]:checked')?.value;
 	var RVT_Prz = document.querySelector('input[name=RV_Thr]:checked')?.value;
 
 	var T1a_Btn = document.getElementById("Stage_T1a");
@@ -63,7 +62,7 @@ function CheckStage() {
 	var T3_Btn = document.getElementById("Stage_T3");
 	var T4_Btn = document.getElementById("Stage_T4");
 
-	if ((Depth == "Hilar Fat/Collecting System") || (RVT_Prz !== "Absent")) {
+	if (RVT_Prz !== "Absent") {
 		T1a_Btn.disabled = true;
 		T1b_Btn.disabled = true;
 		T2_Btn.disabled = true;

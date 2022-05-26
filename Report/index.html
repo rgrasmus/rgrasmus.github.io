@@ -126,7 +126,10 @@
 	
 <div id="CMEnhance">
 	<h2>Enhancement Characteristics at Corticomedullary (CM) Phase &nbsp;<i class="fas fa-info-circle help_icon openmodal" href="#CME_modal"></i></h2>
-	<p>Assess area with the <em>HIGHEST</em> enhancement on CM phase </p>
+	<p>
+		Assess area with the <em>HIGHEST</em> enhancement on CM phase <br>
+		Compare between phases using identicaly acquired images (i.e. same sequence and resolution)
+	</p>
 	<h3>
 		<span id="CME_Exclame" class="exclame"><i class="fas fa-exclamation-circle"></i></span>
 		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseCME(event)">Degree of Enhancement Relative to Background Renal Cortex</span>
@@ -278,7 +281,10 @@
 		<span id="ADER_Exclame" class="exclame" style="display: none;"><i class="fas fa-exclamation-circle"></i></span>
 		<span tabindex="0" onfocus="this.scrollIntoView({block: 'center'})" onkeydown="ChooseWash(event)">Is Tumor Washout Present?</span>
 	</h2>
-	<p>(i.e., Arterial-Delayed Enhancement Ratio (ADER) &ge; 1.5)</p>
+	<p>
+		Assess for the relative "washout" of the tumor on delayed post-contrast phase (i.e., Arterial-Delayed Enhancement Ratio (ADER) &ge; 1.5) <br>
+		Compare between phases using identicaly acquired images (i.e. same sequence and resolution)
+	</p>
 	<input type="radio" name="Wash" id="Wash_Y" value="Yes"><label class="R_Lbl" for="Wash_Y">Yes, ADER &ge; 1.5</label>
 	<input type="radio" name="Wash" id="Wash_N" value="No"><label class="R_Lbl" for="Wash_N">No, ADER &lt; 1.5</label>
 	<button id="Btn_ADER_OpenCalc" class="button" onclick="ADER_OpenCalc()" tabindex="-1">Help Me Calculate</button>
@@ -291,7 +297,7 @@
 			<label>Corticomedullary</label> <input type="tel" id="ADER_CM_SI">
 		</div>
 		<div id="NG_SI_ADER" style="margin-bottom: 6px" class="input">
-			<label>Nephrographic</label> <input type="tel" id="ADER_NG_SI">
+			<label>Delayed</label> <input type="tel" id="ADER_NG_SI">
 		</div>
 		<button id="Btn_CalcADER" class="button" onclick="ADER_RunCalc()">Calculate</button>
 		<button id="Btn_CalcADER_Reset" class="button" onclick="ADER_ResetCalc()">Reset</button>

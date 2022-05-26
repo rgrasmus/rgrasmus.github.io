@@ -79,7 +79,10 @@
 
 <div id="CMEnhance" style="display:none">
 	<h2>Enhancement on Corticomedullary (CM) Phase</h2>
-	<h3>Assess area with the <em>HIGHEST</em> enhancement on CM phase</h3>
+	<h3>
+		Assess area with the <em>HIGHEST</em> enhancement on CM phase <br>
+		Compare between phases using identicaly acquired images (i.e. same sequence and resolution)
+	</h3>
 	<button id="Btn_IntCM" class="button" onclick="CM_EnhFn(1)">Intense</button>
 	<button id="Btn_ModCM" class="button" onclick="CM_EnhFn(2)">Moderate</button>
 	<button id="Btn_MildCM" class="button" onclick="CM_EnhFn(3)">Mild</button>
@@ -143,6 +146,10 @@
 
 <div id="ADER" style="display:none">
 	<h2>Arterial-Delayed Enhancement Ratio (ADER)</h2>
+	<h3>
+		Assess for the relative "washout" of the tumor on delayed post-contrast phase <br>
+		Compare between phases using identicaly acquired images (i.e. same sequence and resolution)
+	</h3>
 	<button id="Btn_ADER_GT" class="button" onclick="ADERFn(1)">ADER &gt; 1.5</button>
 	<button id="Btn_ADER_LT" class="button" onclick="ADERFn(2)">ADER &lt; 1.5</button>
 	<button id="Btn_Help_ADER" class="button" onclick="ADERFn(3)">Help Me Calculate</button>
@@ -155,7 +162,7 @@
 			<label>Corticomedullary</label> <input type="tel" id="ADER_CM_SI">
 		</div>
 		<div id="NG_SI_ADER" style="margin-bottom: 6px" class="input">
-			<label>Nephrographic</label> <input type="tel" id="ADER_NG_SI">
+			<label>Delayed</label> <input type="tel" id="ADER_NG_SI">
 		</div>
 		<button id="Btn_CalcADER" class="button" onclick="ADER_RunCalc()">Calculate</button>
 		<button id="Btn_CalcADER_Reset" class="button" onclick="CalcADER_Reset()">Reset</button>

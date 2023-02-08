@@ -10,11 +10,59 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-35418901-2"></script>
 	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+		var trackingConsent = localStorage.getItem("trackingccLSConsent");
+		if (trackingConsent === null) {
+			var disclaimer = "This ccLS calculator and MRI report generator are for general health information only. It is not to be used as a replacement for medical advice, diagnosis, or treatment of any health condition or problem. Users of the website should not rely on information provided by the calculator for their own health problems. Questions should be addressed to the user's own physician or other healthcare provider. <br> The authors of this website make no warranties, nor express implied representations whatsoever, regarding the accuracy, completeness, timeliness, comparative or controversial nature, or usefulness of any information contained or referenced in the calculator and report generator. The authors and their respective institutions do not assume any risk whatsoever for the use of the website or the information contained herein. Health related information changes frequently and therefore information contained in the website may be outdated, incomplete, or incorrect. <br> Use of the calculator and report generator does not create an express or implied physician-patient relationship. The authors and their respective institutions do not endorse or claim validity for the calculator found on this website. The activities and products of the authors and the website developers and agents are not endorsed by our past, present, or future employers. <br> The user is hereby advised to consult with a physician or other professional healthcare provider prior to making any decisions, or undertaking any actions or not undertaking any actions related to any healthcare problem or issue the user might have at any time, now or in the future. In using the website, the user agrees that none of the authors, nor any other party is or will be liable or otherwise responsible for any decision made or any action taken or any action not taken due to use of any information presented in the website.";
+			
+			var consentPopup = document.createElement("div");
+			consentPopup.style.position = "fixed";
+			consentPopup.style.width = "75%";
+			consentPopup.style.height = "50%";
+			consentPopup.style.top = "50%";
+			consentPopup.style.left = "50%";
+			consentPopup.style.marginTop = "-25%";
+			consentPopup.style.marginLeft = "-37.5%";
+			consentPopup.style.overflowY = "scroll";
+			consentPopup.style.backgroundColor = "white";
+			consentPopup.style.padding = "1em";
+			consentPopup.style.border = "1px solid black";
+			consentPopup.innerHTML = "<p>" + disclaimer + "</p><br><p>This website uses Google Analytics to track the number of users and regional location. We do not store information submitted in the calculator or report generator. By clicking 'Accept', you acknowledge the above disclaimer and agree to allow tracking. By clicking 'Decline', you acknowledge the above disclaimer and decline tracking.</p><br><button id='acceptTracking'>Accept</button> <button id='denyTracking'>Decline</button>";	
+			
+			if (document.body) {
+				document.body.appendChild(consentPopup);
+			} else {
+				document.addEventListener('DOMContentLoaded', function () {
+					document.body.appendChild(consentPopup);
+				});
+			}
+			
+			document.addEventListener('DOMContentLoaded', function() {
+				var acceptBtn = document.getElementById('acceptTracking');
+				acceptBtn.addEventListener('click', function() {
+					localStorage.setItem("trackingccLSConsent", "accepted");
+					consentPopup.style.display = "none";
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
 
-		gtag('config', 'UA-35418901-2');
+					gtag('config', 'UA-35418901-2');
+				});
+			});
+			
+			document.addEventListener('DOMContentLoaded', function() {
+				var denyBtn = document.getElementById('denyTracking');
+				denyBtn.addEventListener('click', function() {
+					localStorage.setItem("trackingccLSConsent", "denied");
+					consentPopup.style.display = "none";
+				});
+			});
+		} else if (trackingConsent === "accepted") {
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-35418901-2');
+		}
 	</script>
 </head>
 
